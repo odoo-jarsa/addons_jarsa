@@ -64,7 +64,7 @@ $(document).ready(function() {
                 nameInput: '#cardholder_name'
             },
         });
-
+        
         $('#conekta-card-number').on('keyup', function(){
             var card_number = this;
             var validation = Conekta.card.validateNumber(card_number.value);
