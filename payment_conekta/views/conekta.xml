@@ -21,18 +21,32 @@
                 </div>
                 <div id="cvc-div" class="form-group form-field o_website_form_required">
                     <label class="col-md-3 col-sm-4">CVC</label>
-                    <div class="col-md-2 col-sm-3">
+                    <div class="col-md-7 col-sm-8">
                         <input id="cvc" data-conekta="card[cvc]" type="text" class="form-control o_website_form_input" size="4"/>
+                    </div>
+                </div>
+                <div id="month-div" class="form-group form-field o_website_form_required">
+                    <label class="col-md-3 col-sm-4">Monthly Installments</label>
+                    <div class="col-md-7 col-sm-8">
+                        <select id="month-inte" class="form-control"> 
+                            <option  data-conekta="card[monthly_installments]" t-att-value="100" selected="selected">one payment</option>
+                            <option  data-conekta="card[monthly_installments]" t-att-value="3">3 months</option>
+                            <option  data-conekta="card[monthly_installments]" t-att-value="6">6 months</option>
+                            <option  data-conekta="card[monthly_installments]" t-att-value="9">9 months</option>
+                            <option  data-conekta="card[monthly_installments]" t-att-value="12">12 months</option>
+                        </select>
                     </div>
                 </div>
                 <div id="expiration-div" class="form-group form-field o_website_form_required">
                     <label class="col-md-3 col-sm-4">Expiration date (MM/YYYY)</label>
                     <div class="col-md-7 col-sm-8">
-                        <div class="col-md-4 col-sm-4">
+                        <div class="col-md-5 col-sm-5">
                             <input id="exp_month" data-conekta="card[exp_month]" type="text" class="form-control o_website_form_input expiration" size="2"/>
                         </div>
-                        <span>/</span>
-                        <div class="col-md-4 col-sm-4">
+                        <div class="col-md-2 col-sm-2">
+                            /
+                        </div>
+                        <div class="col-md-5 col-sm-5">
                             <input id="exp_year" data-conekta="card[exp_year]" type="text" class="form-control o_website_form_input expiration" size="4"/>
                         </div>
                     </div>

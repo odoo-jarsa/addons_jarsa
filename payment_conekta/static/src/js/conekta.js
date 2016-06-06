@@ -36,7 +36,8 @@ $(document).ready(function() {
         var conektaSuccessResponseHandler = function(token) {
             var $form = $("#card-form");
             $form.append($("<input type='hidden' name='token_id'>").val(token.id));
-            ajax.jsonRpc('/payment/conekta/charge', 'call', {'token': token.id}).then(function(response) {
+            var month = $('#month-inte').val();
+            ajax.jsonRpc('/payment/conekta/charge', 'call', {'token': token.id, 'month': month}).then(function(response) {
                 if (response === true) {
                     $form.get(0).submit();
                 } else {
