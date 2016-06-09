@@ -26,6 +26,8 @@
         "views/assets_frontend.xml",
         "wizards/conekta_refund_wizard_view.xml",
         "views/sale_order_view.xml",
+        "data/oxxo_action_data.xml",
+        "data/rem_action_data.xml",
     ],
     "demo": [
         "demo/payment_acquirer_demo.xml",
