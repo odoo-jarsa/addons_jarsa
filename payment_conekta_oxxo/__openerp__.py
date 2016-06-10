@@ -24,6 +24,7 @@
         "views/assets_frontend.xml",
         "data/payment_acquirer_data.xml",
         "views/sale_order_report_view.xml",
+        "data/oxxo_action_data.xml",
     ],
     "demo": [
         "demo/payment_acquirer_demo.xml",

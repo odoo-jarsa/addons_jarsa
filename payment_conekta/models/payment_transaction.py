@@ -7,6 +7,7 @@ from openerp import api, models
 from openerp.tools.translate import _
 from openerp.addons.payment.models.payment_acquirer import ValidationError
 import datetime
+from openerp import SUPERUSER_ID
 _logger = logging.getLogger(__name__)
 
 
