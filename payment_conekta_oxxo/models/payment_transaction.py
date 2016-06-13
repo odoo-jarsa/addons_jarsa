@@ -19,6 +19,7 @@ class PaymentTransaction(models.Model):
 
     conekta_oxxo_barcode = fields.Binary(string='Oxxo Barcode')
     conekta_oxxo_expire_date = fields.Date(string="Oxxo expire date")
+    conekta_response = fields.Text()
 
     @api.model
     def _conekta_oxxo_form_get_tx_from_data(self, data):

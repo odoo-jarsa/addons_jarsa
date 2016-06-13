@@ -5,7 +5,7 @@
          so users can freely customize/delete them -->
     <data noupdate="1">
         <!--Email template -->
-        <record id="email_template_partially_action" model="mail.template">
+        <record id="email_template_payment_oxxo" model="mail.template">
             <field name="name">Payment Oxxo</field>
             <field name="email_from">${(object.user_id.email and '%s &lt;%s&gt;' % (object.user_id.name, object.user_id.email) or '')|safe}</field>
             <field name="subject">${object.company_id.name} Payment Oxxo (Ref ${object.name or ''})</field>
@@ -26,7 +26,7 @@
                             &nbsp;&nbsp;Your contact: <a href="mailto:${object.user_id.email or ''}">${object.user_id.name}</a>
                             % endif
                         </p>
-                            <p>We inform you that the payment made has oxxo is loaded properly in the amount of ${objet.amount_total}, we appreciate your patience and attention.</p>
+                            <p>We inform you that the payment made has oxxo is loaded properly in the amount of ${object.amount_conekta}, we appreciate your patience and attention.</p>
                             <p>Enjoy your purchase.</p>
                             <p>Regards!!</p>
                         <br><p></p><p>

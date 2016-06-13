@@ -32,12 +32,12 @@ class ConektaRefundWizard(models.TransientModel):
         if self.amount < so_price:
             charge.refund(amount=int(self.amount*100))
             self.sale_order_id.message_post_with_template(self.env.ref(
-                    'payment_conekta.email_template_partially_action').id)
+                'payment_conekta.email_template_partially_action').id)
         else:
             tx.state = 'cancel'
             charge.refund()
             self.sale_order_id.message_post_with_template(self.env.ref(
-                    'payment_conekta.email_template_cash_back').id)
+                'payment_conekta.email_template_cash_back').id)
         tx_ids = transaction.search(
             [('sale_order_id', '=', tx.sale_order_id.id)])
         list_tx = []
