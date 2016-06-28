@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    	<record id="mrp_production_form_view" model="ir.ui.view">
+            <field name="name">mrp.production.form</field>
+            <field name="model">mrp.production</field>
+            <field name='inherid_id' ref="mrp.mrp_production_form_view"/>
+            <field name="arch" type="xml">
+            	<xpath expr="//header/button[@name='action_cancel']" position="after">
+            		<button name="action_print" type="object" states="in_production" string="Print Report"/>
+            	</xpath>
+            	<xpath expr="//header/field[@name='state']" position="replace">
+            		<field name="state" widget="statusbar" statusbar_visible="draft,ready,in_production,print,done" statusbar_colors='{"confirmed":"blue"}'/>
+            	</xpath>
+            </field>
+        </record>
+    </data>
+</openerp>
