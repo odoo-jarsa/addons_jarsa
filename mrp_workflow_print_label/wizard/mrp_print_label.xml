@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
-    <data
+    <data>
     <record model='ir.ui.view' id='mrp_print_label_form'>
             <field name='name'>print_label_wizard.form</field>
-            <field name='model'>mrp_print_abel</field>
+            <field name='model'>mrp.print.label</field>
             <field name='arch' type='xml'>
                 <form string="Cover Label">
                     <field name="label_type"/>
@@ -17,7 +17,7 @@
         </record>
         <record id='action_print' model='ir.actions.act_window'>
             <field name='name'>MRP Printing Label</field>
-            <field name='res_model'>mrp_print_label</field>
+            <field name='res_model'>mrp.print.label</field>
             <field name='view_type'>form</field>
             <field name='target'>new</field>
             <field name='view_mode'>form</field>
