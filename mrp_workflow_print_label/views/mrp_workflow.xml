@@ -5,15 +5,13 @@
             <field name="wkf_id" ref="wkf_prod"/>
             <field name="name">print</field>
             <field name="kind">function</field>
-            <field name="action">action_print()</field>
+            <field name="action">action_wizard()</field>
         </record>
-        
         <record id="prod_trans_product_print" model="workflow.transition">
             <field name="act_from" ref="prod_act_in_production"/>
             <field name="act_to" ref="prod_act_done"/>
             <field name="signal">button_print</field>
             <field name="condition">True</field>
         </record>
-
     </data>
 </openerp>

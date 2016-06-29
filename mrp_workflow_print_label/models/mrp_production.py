@@ -8,7 +8,7 @@ from openerp import fields, models
 class MrpProduction(models.Model):
     _inherit = 'mrp.production'
 
-    state = fields.selection([
+    state = fields.Selection([
         ('draft', 'New'),
         ('cancel', 'Cancelled'),
         ('confirmed', 'Awaiting Raw Materials'),

@@ -3,8 +3,8 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 {
-    "name": "Print Report",
-    "summary": "MRP",
+    "name": "MRP Workflow Print Label",
+    "summary": "Print MRP Workflow Label after Production",
     "version": "9.0.1.0.0",
     "category": "Hidden",
     "website": "https://www.jarsa.com.mx/",
@@ -16,5 +16,8 @@
         "mrp"
     ],
     "data": [
+        # 'wizard/mrp_print_label.xml',
+        'views/mrp_view.xml',
+        # 'views/mrp_workflow.xml',
     ],
 }

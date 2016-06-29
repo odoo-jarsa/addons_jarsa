@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<template id="product_label_tmpl_standard">
+			<t>
+				<div style="padding:5px;margin:0px;border:1px solid black;width:340px;height:164px;text-align:center;float:left;">
+					<t t-if="p.user_warehouse_storage_policy == 'stocked'">
+						<div style="width:100%;text-align:right;">
+							<div>
+								<span>ↆ</span>
+							</div>
+						</div>
+					</t>
+					<div t-att-style="p.user_warehouse_storage_policy == 'stocked' and 'width:100%;text-align:center;margin-top:-20px;' or 'width:100%;text-align:center;'">
+						<span style="font-weight:bold;font-size:22;">
+							<t t-esc="p.default_code" />
+						</span>
+					</div>
+					<img t-att-src="'report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', p.barcode_number, 600, 100)" style="width:300px;height:50px;" />
+					<div style="width:100%;text-align:center;">
+						<span style="font-size:10;">
+							<t t-esc="p.barcode_number" />
+						</span>
+					</div>
+					<div style="width:100%;text-align:center;">
+						<span style="font-size:16;">
+							<t t-if="len(p.name) &gt; 60">
+								<t t-esc="p.name[:55]+'...'" />
+							</t>
+							<t t-if="len(p.name) &lt;= 60">
+								<t t-esc="p.name" />
+							</t>
+						</span>
+					</div>
+					<div style="width:25%;text-align:center;float:left;">
+						<span style="font-style:italic;font-size:10;">
+							<t t-esc="p.user_aisle or '-'" />
+						</span>
+					</div>
+					<div style="width:25%;text-align:center;float:left;">
+						<span style="font-style:italic;font-size:10;">
+							<t t-esc="p.categ_dpt or '-'" />
+						</span>
+					</div>
+					<div style="width:25%;text-align:center;float:left;">
+						<span style="font-style:italic;font-size:10;">
+							<t t-esc="p.categ_group or '-'" />
+						</span>
+					</div>
+					<div style="width:25%;text-align:center;float:left;">
+						<span style="font-style:italic;font-size:10;">
+							<t t-esc="p.categ_family or '-'" />
+						</span>
+					</div>
+				</div>
+			</t>
+		</template>
+
+
+		<template id="product_label_tmpl_maintenance">
+			<t>
+				<div style="padding:5px;margin:0px;border:1px solid black;width:214px;height:151px;text-align:center;float:left;">
+					<t t-if="p.user_warehouse_storage_policy == 'stocked'">
+						<div style="width:100%;text-align:right;">
+							<div>
+								<span>ↆ</span>
+							</div>
+						</div>
+					</t>
+					<div t-att-style="p.user_warehouse_storage_policy == 'stocked' and 'width:100%;text-align:center;margin-top:-20px;' or 'width:100%;text-align:center;'">
+						<span style="font-weight:bold;font-size:18;">
+							<t t-esc="p.default_code" />
+						</span>
+					</div>
+					<img t-att-src="'report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', p.barcode_number, 200, 100)" style="width:200px;height:50px;" />
+					<div style="width:100%;text-align:center;">
+						<span style="font-size:10;">
+							<t t-esc="p.barcode_number" />
+						</span>
+					</div>
+					<div style="width:100%;text-align:center;">
+						<span style="font-size:12;">
+							<t t-if="len(p.name) &gt; 50">
+								<t t-esc="p.name[:45]+'...'" />
+							</t>
+							<t t-if="len(p.name) &lt;= 50">
+								<t t-esc="p.name" />
+							</t>
+						</span>
+					</div>
+					<div style="width:25%;text-align:center;float:left;">
+						<span style="font-style:italic;font-size:8;">
+							<t t-esc="p.user_aisle or '-'" />
+						</span>
+					</div>
+					<div style="width:25%;text-align:center;float:left;">
+						<span style="font-style:italic;font-size:8;">
+							<t t-esc="p.categ_dpt or '-'" />
+						</span>
+					</div>
+					<div style="width:25%;text-align:center;float:left;">
+						<span style="font-style:italic;font-size:8;">
+							<t t-esc="p.categ_group or '-'" />
+						</span>
+					</div>
+					<div style="width:25%;text-align:center;float:left;">
+						<span style="font-style:italic;font-size:8;">
+							<t t-esc="p.categ_family or '-'" />
+						</span>
+					</div>
+				</div>
+			</t>
+		</template>
+
+		<template id="report_label_print_document">
+			<t>
+				<div class="page" style="margin-left:-15px;">
+					<div class="oe_structure"/>	
+					<t t-foreach="o.product_ids" t-as="p">
+						<t t-if="o.type == 'standard'">
+							<t t-call="product_label_print.product_label_tmpl_standard" />
+						</t>
+						<t t-if="o.type == 'maintenance'">
+							<t t-call="product_label_print.product_label_tmpl_maintenance" />
+						</t>
+					</t>
+				</div>
+			</t>
+		</template>
+
+		<template id="report_label_print">
+			<t>
+				<t t-foreach="doc_ids" t-as="doc_id">
+					<t t-raw="translate_doc(doc_id, doc_model, 'env.user.lang', 'product_label_print.report_label_print_document')" />
+				</t>
+			</t>
+		</template>
+
+		<!-- In product view... -->
+
+		<template id="report_label_print_product_standard_document">
+			<t>
+				<div class="page" style="margin-left:-15px;">
+					<t t-foreach="docs" t-as="p">
+						<t t-call="product_label_print.product_label_tmpl_standard" />
+					</t>
+				</div>
+			</t>
+		</template>
+		<template id="report_label_print_product_standard">
+			<t>
+				<t t-raw="translate_doc(doc_ids, doc_model, 'env.user.lang', 'product_label_print.report_label_print_product_standard_document')" />
+			</t>
+		</template>
+
+		<template id="report_label_print_product_maintenance_document">
+			<t>
+				<div class="page" style="margin-left:-15px;">
+					<t t-foreach="docs" t-as="p">
+						<t t-call="product_label_print.product_label_tmpl_maintenance" />
+					</t>
+				</div>
+			</t>
+		</template>
+		<template id="report_label_print_product_maintenance">
+			<t>
+				<t t-raw="translate_doc(doc_ids, doc_model, 'env.user.lang', 'product_label_print.report_label_print_product_maintenance_document')" />
+			</t>
+		</template>
+
+	</data>
+</openerp>
