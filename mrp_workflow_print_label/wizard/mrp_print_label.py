@@ -2,7 +2,7 @@ from openerp import models, fields
 
 
 class Wizard(models.TransientModel):
-    _name = 'mrp_print_label'
+    _name = 'mrp.print.label'
     _inherit = 'mrp.production'
 
     def _default_session(self):
