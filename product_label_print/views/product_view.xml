@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+		<record id="product_label_print_form" model="ir.ui.view">
+            <field name="name">product.label.print.form</field>
+            <field name="model">product.label.print</field>
+            <field name="arch" type="xml">
+            	<form>
+            		<sheet>
+            			<group>
+            				<field name="name"/>
+            				<field name="type"/>
+            				<newline />
+            				<button name="easy_import" type="object" string="Import" />
+            				<newline />
+            				<field name="product_ids"/>
+            			</group>
+            		</sheet>
+            	</form>
+            </field>
+        </record>
+	
+        <record id="product_label_print_action" model="ir.actions.act_window">
+            <field name="name">Product Label</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.label.print</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_type">form</field>
+        </record>
+        
+        <menuitem id="menu_product_labels" parent="base.menu_product" action="product_label_print_action" name="Product Labels" groups="base.group_user" sequence="50" />
+    </data>
+</openerp>

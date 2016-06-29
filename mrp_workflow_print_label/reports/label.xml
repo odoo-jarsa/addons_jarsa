@@ -1,0 +1,73 @@
+<openerp>
+    <data>
+        <report attachment="(object.state in ('open','paid')) and ('INV'+(object.number or '').replace('/','')+'.pdf')" attachment_use="True" file="account.report_invoice" id="account_invoices" model="account.invoice" name="account.report_invoice" report_type="qweb-pdf" string="Invoices"/>
+        <template id="report_session_view">
+            <t t-call="report.html_container">
+                <t t-as="doc" t-foreach="docs">
+                    <t t-call="report.external_layout">
+                        <div class="page">
+                            <t>
+                                <tr>
+                                    <td>Lote de Impresion</td>
+                                    <td>
+                                        <span t-esc="lote_impresion"/>
+                                    </td>
+                                    <td/>
+                                </tr>
+                                <tr>
+                                    <td>Lote de Corte</td>
+                                    <td>
+                                        <td>
+                                            <span t-esc="lote_corte"/>
+                                        </td>
+                                    </td>
+                                    <td rowspan="2">celda</td>
+                                </tr>
+                                <tr>
+                                    <td>Descripcion</td>
+                                    <td>
+                                        <td>
+                                            <span t-esc="descripcion"/>
+                                        </td>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>No. Parte</td>
+                                    <td>
+                                        <td>
+                                            <span t-esc="parte"/>
+                                        </td>
+                                    </td>
+                                    <td rowspan="3">celda</td>
+                                </tr>
+                                <tr>
+                                    <td>Auditor/Inpsector</td>
+                                    <td>
+                                        <td>
+                                            <span t-esc="auditor"/>
+                                        </td>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Lote de Pintura</td>
+                                    <td>
+                                        <td>
+                                            <span t-esc="lote_pintura"/>
+                                        </td>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="1">celda</td>
+                                </tr>
+                            </t>
+                            <footer>
+                                <button class="oe_highlight" name="print" string="Print" type="object"/>or
+        
+                                <button special="cancel" string="Cancel"/></footer>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</openerp>

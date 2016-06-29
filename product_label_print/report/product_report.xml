@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        	
+        <report 
+            id="action_report_product_label_print_product_standart" 
+            string="Product Labels" 
+            model="product.product" 
+            report_type="qweb-pdf" 
+            name="product_label_print.report_label_print_product_standard" 
+            file="product_label_print.report_label_print_product_standard"
+	  		/>
+	  		
+	  	<report 
+            id="action_report_product_label_print_product_maintenance" 
+            string="Product Labels (Maintenance)" 
+            model="product.product" 
+            report_type="qweb-pdf" 
+            name="product_label_print.report_label_print_product_maintenance" 
+            file="product_label_print.report_label_print_product_maintenance"
+	  		/>
+
+        <report 
+            id="action_report_product_label_print" 
+            string="Product Labels" 
+            model="product.label.print" 
+            report_type="qweb-pdf" 
+            name="product_label_print.report_label_print" 
+            file="product_label_print.report_label_print"
+	  		/>
+    </data>
+</openerp>
