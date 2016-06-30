@@ -1,26 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
-    <record model='ir.ui.view' id='mrp_print_label_form'>
-            <field name='name'>print_label_wizard.form</field>
-            <field name='model'>mrp.print.label</field>
-            <field name='arch' type='xml'>
-                <form string="Cover Label">
-                    <field name="label_type"/>
-                    <group attrs="{'invisible':[('cover','=',['true'])]}">
-                        <field name="descripcion"/>
+        <!--Print Label -->
+        <record id="view_mrp_print_label_wizard" model="ir.ui.view">
+            <field name="name">MRP Workflow Print Label Wizard</field>
+            <field name="model">mrp.print.label</field>
+            <field name="arch" type="xml">
+                <form string="Label">
+                    <group string="Lotes">
+                        <field name="lote_impresion" />
+                        <field name="lote_corte" />
+                        <field name="lote_pintura" />
+                        <field name="order_id"/>
+                        <!-- field name="lot_id"/> -->
                     </group>
-                    <button name="confirm_print" string="Confirmar Impresion"/>
-                    <button name="cancel_print" string="Cancelar Impresion"/>
+                    <group string="Informacion">
+                        <field name="descripcion" />
+                        <field name="parte"/>
+                        <field name="cantidad"/>
+                        <field name="user_id"/>
+                        <field name="prod_id"/>
+                    </group>
+                    <group string="Calidad">
+                        <field name="auditor" />
+                    </group>
+                    <footer>
+                        <button name="button_wizard" type="object" string="Confirm" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
                 </form>
             </field>
         </record>
-        <record id='action_print' model='ir.actions.act_window'>
-            <field name='name'>MRP Printing Label</field>
-            <field name='res_model'>mrp.print.label</field>
-            <field name='view_type'>form</field>
-            <field name='target'>new</field>
-            <field name='view_mode'>form</field>
+        <record id="mrp_print_label_wizard" model="ir.actions.act_window">
+            <field name="name">MRP Workflow Print Label Wizard</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">mrp.print.label</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
         </record>
     </data>
-</openerp>
+</openerp>    
