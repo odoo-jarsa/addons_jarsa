@@ -1,73 +1,49 @@
-<openerp>
+<?xml version="1.0" encoding="utf-8"?>
+<openerp> 
     <data>
-        <report attachment="(object.state in ('open','paid')) and ('INV'+(object.number or '').replace('/','')+'.pdf')" attachment_use="True" file="account.report_invoice" id="account_invoices" model="account.invoice" name="account.report_invoice" report_type="qweb-pdf" string="Invoices"/>
-        <template id="report_session_view">
-            <t t-call="report.html_container">
-                <t t-as="doc" t-foreach="docs">
+        <template id="label_qweb">
+            <t t-call="report.html_container"> 
+                <t t-foreach="docs" t-as="o"> 
                     <t t-call="report.external_layout">
                         <div class="page">
-                            <t>
-                                <tr>
-                                    <td>Lote de Impresion</td>
-                                    <td>
-                                        <span t-esc="lote_impresion"/>
-                                    </td>
-                                    <td/>
-                                </tr>
-                                <tr>
-                                    <td>Lote de Corte</td>
-                                    <td>
-                                        <td>
-                                            <span t-esc="lote_corte"/>
-                                        </td>
-                                    </td>
-                                    <td rowspan="2">celda</td>
-                                </tr>
-                                <tr>
-                                    <td>Descripcion</td>
-                                    <td>
-                                        <td>
-                                            <span t-esc="descripcion"/>
-                                        </td>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>No. Parte</td>
-                                    <td>
-                                        <td>
-                                            <span t-esc="parte"/>
-                                        </td>
-                                    </td>
-                                    <td rowspan="3">celda</td>
-                                </tr>
-                                <tr>
-                                    <td>Auditor/Inpsector</td>
-                                    <td>
-                                        <td>
-                                            <span t-esc="auditor"/>
-                                        </td>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Lote de Pintura</td>
-                                    <td>
-                                        <td>
-                                            <span t-esc="lote_pintura"/>
-                                        </td>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="1">celda</td>
-                                </tr>
-                            </t>
-                            <footer>
-                                <button class="oe_highlight" name="print" string="Print" type="object"/>or
-        
-                                <button special="cancel" string="Cancel"/></footer>
+                            <div class="oe_structure"/>
+                            <div class="row">
+                                <span class="text-center"><h1>Student Information</h1></span>
+                                <table class="table table condensed">
+                                    <tr>
+                                        <td><h3><strong>GRN No:</strong></h3></td>
+                                        <td><h3 t-field="o.code"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td><h3><strong>First Name:</strong></h3></td>
+                                        <td><h3 t-field="o.fname"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td><h3><strong>Middle Name:</strong></h3></td>
+                                        <td><h3 t-field="o.mname"/></td>
+                                    </tr>
+                                    <tr t-if="o.lname">
+                                        <td><h3><strong>Last Name:</strong></h3></td>
+                                        <td><h3 t-field="o.lname"/></td>
+                                    </tr>
+                                    <tr t-if="o.gender">
+                                        <td><h3><strong>Gender:</strong></h3></td>
+                                        <td><h3 t-field="o.gender"/></td>
+                                    </tr>
+                                    <tr t-if="o.dob">
+                                        <td><h3><strong>Date of Birth:</strong></h3></td>
+                                        <td><h3 t-field="o.dob"/></td>
+                                    </tr>
+                                    <tr t-if="o.join_date">
+                                        <td><h3><strong>Joining Date:</strong></h3></td>
+                                        <td><h3 t-field="o.join_date"/></td>
+                                    </tr>
+                                </table>
+                            </div>
                         </div>
                     </t>
                 </t>
-            </t>
+            </t> 
         </template>
     </data>
 </openerp>

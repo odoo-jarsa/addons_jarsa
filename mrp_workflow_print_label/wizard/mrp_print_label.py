@@ -1,13 +1,8 @@
 from openerp import models, fields
 
 
-class Wizard(models.TransientModel):
+class MrpPrintLabel(models.TransientModel):
     _name = 'mrp.print.label'
-    _inherit = 'mrp.production'
-
-    def _default_session(self):
-        return self.env['mrp.production'].browse(
-            self._context.get('active_id'))
 
     lote_impresion = fields.Char(string='Lote de Impresion')
     lote_corte = fields.Char(string='Lote de Descripcion')
@@ -18,8 +13,22 @@ class Wizard(models.TransientModel):
     bar_code = fields.Char(string='Codigo de Barras')
     label_type = fields.Selection([
         ('cover', 'Cover'),
-        ('telas', 'Telas'),
-        ], string='Tipo de Etiqueta')
+        ('telas', 'Telas')], string='Tipo de Etiqueta')
+    order_id = fields.Many2one(
+        'mrp.production', string="Order", readonly=True)
 
     def action_print():
         return True
+
+    # @api.multi
+    # def print_report(self, context=None):
+    #     datas = {}
+    #     if context is None:
+    #         context = {}
+    #     data = self.read(cr, uid, ids)[0]
+    #     datas = {
+    #                  'ids': [],
+    #                  'model': 'object.object',
+    #                  'form': data
+    #     }
+    #     return {'type': 'ir.actions.report.xml', 'report_name': 'label_report', 'datas': datas}
