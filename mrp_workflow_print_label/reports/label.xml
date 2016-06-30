@@ -1,49 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp> 
+<openerp>
     <data>
         <template id="label_qweb">
-            <t t-call="report.html_container"> 
-                <t t-foreach="docs" t-as="o"> 
+            <t t-call="report.html_container">
                     <t t-call="report.external_layout">
-                        <div class="page">
-                            <div class="oe_structure"/>
-                            <div class="row">
-                                <span class="text-center"><h1>Student Information</h1></span>
-                                <table class="table table condensed">
-                                    <tr>
-                                        <td><h3><strong>GRN No:</strong></h3></td>
-                                        <td><h3 t-field="o.code"/></td>
-                                    </tr>
-                                    <tr>
-                                        <td><h3><strong>First Name:</strong></h3></td>
-                                        <td><h3 t-field="o.fname"/></td>
-                                    </tr>
-                                    <tr>
-                                        <td><h3><strong>Middle Name:</strong></h3></td>
-                                        <td><h3 t-field="o.mname"/></td>
-                                    </tr>
-                                    <tr t-if="o.lname">
-                                        <td><h3><strong>Last Name:</strong></h3></td>
-                                        <td><h3 t-field="o.lname"/></td>
-                                    </tr>
-                                    <tr t-if="o.gender">
-                                        <td><h3><strong>Gender:</strong></h3></td>
-                                        <td><h3 t-field="o.gender"/></td>
-                                    </tr>
-                                    <tr t-if="o.dob">
-                                        <td><h3><strong>Date of Birth:</strong></h3></td>
-                                        <td><h3 t-field="o.dob"/></td>
-                                    </tr>
-                                    <tr t-if="o.join_date">
-                                        <td><h3><strong>Joining Date:</strong></h3></td>
-                                        <td><h3 t-field="o.join_date"/></td>
-                                    </tr>
-                                </table>
+                        <t t-foreach="doc_ids" t-as="o">
+                            <div class="page">
+                                <h2>Report title</h2>
+                                <p>This object's name is</p>
+                                <field name="o.auditor"/>
                             </div>
-                        </div>
+                        </t>
                     </t>
-                </t>
-            </t> 
+            </t>
         </template>
+        <!-- Generates the report in Odoo -->
+        <report 
+            file="mrp_workflow_print_label.label_qweb" 
+            id="print_label_qweb" 
+            model="mrp.production" 
+            name="mrp_workflow_print_label.label_qweb" 
+            report_type="qweb-html" 
+            string="Print Label Test"/>
+        <!--Traductor de Reporte-->
+        <!-- <template id="sale_order_ticket_translate"><t t-call="report.html_container"><t t-foreach="doc_ids" t-as="doc_id"><t t-raw="translate_doc(doc_id, doc_model, 'partner_id.lang', 'sale_order_report_ticket.sale_order_ticket')"/></t></t></template>-->
     </data>
 </openerp>

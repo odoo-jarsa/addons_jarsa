@@ -21,4 +21,4 @@ class MrpProduction(models.Model):
     def action_state_print_label(self):
         for rec in self:
             rec.state = 'print_label'
-            rec.message_post(body='Printing test')
+            rec.message_post(body='Printing test') 

@@ -7,12 +7,25 @@
             <field name="model">mrp.print.label</field>
             <field name="arch" type="xml">
                 <form string="Label">
-                    <group string="Label">
+                    <group string="Lotes">
+                        <field name="lote_impresion" />
+                        <field name="lote_corte" />
+                        <field name="lote_pintura" />
                         <field name="order_id"/>
-                        <field name="descripcion"/>
+                        <!-- field name="lot_id"/> -->
+                    </group>
+                    <group string="Informacion">
+                        <field name="descripcion" />
+                        <field name="parte"/>
+                        <field name="cantidad"/>
+                        <field name="user_id"/>
+                        <field name="prod_id"/>
+                    </group>
+                    <group string="Calidad">
+                        <field name="auditor" />
                     </group>
                     <footer>
-                        <button name="button_wizard" type="object" string="Confirm" class="oe_highlight"/>
+                        <button name="print_report" type="object" string="Print" class="oe_highlight" icon="gtk-print"/>
                         or
                         <button string="Cancel" class="oe_link" special="cancel" />
                     </footer>
