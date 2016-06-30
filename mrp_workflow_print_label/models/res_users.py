@@ -2,5 +2,10 @@
 # © 2016 Jarsa Sistemas, S.A. de C.V.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from . import mrp_production
-from . import res_users
+from openerp import models, fields
+
+
+class ResUsers(models.Model):
+    _inherit = 'res.users'
+
+    pin = fields.Char(string="PIN")

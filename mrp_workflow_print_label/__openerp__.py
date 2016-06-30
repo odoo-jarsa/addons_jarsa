@@ -19,5 +19,6 @@
         'wizard/mrp_print_label.xml',
         'views/mrp_view.xml',
         'views/mrp_workflow.xml',
+        'views/res_users.xml',
     ],
 }

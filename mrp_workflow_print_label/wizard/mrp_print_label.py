@@ -11,11 +11,18 @@ class MrpPrintLabel(models.TransientModel):
     auditor = fields.Char(string='Auditor/Inspector')
     lote_pintura = fields.Char(string='Lote de Pintura')
     bar_code = fields.Char(string='Codigo de Barras')
+    cantidad = fields.Char(string='cantidad')
     label_type = fields.Selection([
         ('cover', 'Cover'),
         ('telas', 'Telas')], string='Tipo de Etiqueta')
     order_id = fields.Many2one(
         'mrp.production', string="Order", readonly=True)
+    prod_id = fields.Many2one(
+        string='Product', related='order_id.product_id')
+    user_id = fields.Many2one(
+        string='Responsable', related='order_id.user_id')
+    # lot_id = fields.Char(
+    #     string="Lote", related="order_id.move_created_ids2")
 
     def action_print():
         return True
