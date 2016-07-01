@@ -7,6 +7,7 @@
             <field name="model">mrp.print.label</field>
             <field name="arch" type="xml">
                 <form string="Label">
+<<<<<<< HEAD
                     <group string="Lotes">
                         <field name="lote_impresion" />
                         <field name="lote_corte" />
@@ -24,6 +25,12 @@
                     <group string="Calidad">
                         <field name="auditor" />
                     </group>
+=======
+                    <group string="Label">
+                        <field name="order_id"/>
+                        <field name="descripcion"/>
+                    </group>
+>>>>>>> 556f726d51500eb9c8b6e5f95fa21255ba9df18b
                     <footer>
                         <button name="button_wizard" type="object" string="Confirm" class="oe_highlight"/>
                         or
