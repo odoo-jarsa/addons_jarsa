@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp> 
+    <data>
+        <template id="label_qweb">
+            <t t-call="report.html_container"> 
+                <t t-foreach="docs" t-as="o"> 
+                    <t t-call="report.external_layout">
+                        <div class="page">
+                            <div class="oe_structure"/>
+                            <div class="row">
+                                <span class="text-center"><h1>Student Information</h1></span>
+                                <table class="table table condensed">
+                                    <tr>
+                                        <td><h3><strong>GRN No:</strong></h3></td>
+                                        <td><h3 t-field="o.code"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td><h3><strong>First Name:</strong></h3></td>
+                                        <td><h3 t-field="o.fname"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td><h3><strong>Middle Name:</strong></h3></td>
+                                        <td><h3 t-field="o.mname"/></td>
+                                    </tr>
+                                    <tr t-if="o.lname">
+                                        <td><h3><strong>Last Name:</strong></h3></td>
+                                        <td><h3 t-field="o.lname"/></td>
+                                    </tr>
+                                    <tr t-if="o.gender">
+                                        <td><h3><strong>Gender:</strong></h3></td>
+                                        <td><h3 t-field="o.gender"/></td>
+                                    </tr>
+                                    <tr t-if="o.dob">
+                                        <td><h3><strong>Date of Birth:</strong></h3></td>
+                                        <td><h3 t-field="o.dob"/></td>
+                                    </tr>
+                                    <tr t-if="o.join_date">
+                                        <td><h3><strong>Joining Date:</strong></h3></td>
+                                        <td><h3 t-field="o.join_date"/></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t> 
+        </template>
+    </data>
+</openerp>
