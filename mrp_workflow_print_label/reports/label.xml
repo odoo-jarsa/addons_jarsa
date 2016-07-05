@@ -4,23 +4,22 @@
         <template id="label_qweb">
             <t t-call="report.html_container">
                     <t t-call="report.external_layout">
-                        <t t-foreach="doc_ids" t-as="o">
-                            <div class="page">
-                                <h2>Report title</h2>
-                                <p>This object's name is</p>
-                                <field name="o.auditor"/>
-                            </div>
-                        </t>
+                        <div class="page">
+                            <h2>Report title</h2>
+                            <p>This object's name is</p>
+                            <span t-esc="data['form']['lote_impresion']"/>
+                        </div>
+
                     </t>
             </t>
         </template>
         <!-- Generates the report in Odoo -->
-        <report 
-            file="mrp_workflow_print_label.label_qweb" 
-            id="print_label_qweb" 
-            model="mrp.production" 
-            name="mrp_workflow_print_label.label_qweb" 
-            report_type="qweb-html" 
+        <report
+            file="mrp_workflow_print_label.label_qweb"
+            id="print_label_qweb"
+            model="mrp.production"
+            name="mrp_workflow_print_label.label_qweb"
+            report_type="qweb-pdf"
             string="Print Label Test"/>
         <!--Traductor de Reporte-->
         <!-- <template id="sale_order_ticket_translate"><t t-call="report.html_container"><t t-foreach="doc_ids" t-as="doc_id"><t t-raw="translate_doc(doc_id, doc_model, 'partner_id.lang', 'sale_order_report_ticket.sale_order_ticket')"/></t></t></template>-->
