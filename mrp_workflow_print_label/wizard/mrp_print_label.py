@@ -1,4 +1,8 @@
-from openerp import fields, models, api
+# -*- coding: utf-8 -*-
+# © 2016 Jarsa Sistemas, S.A. de C.V.
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+
+from openerp import fields, models
 
 
 class MrpPrintLabel(models.TransientModel):
@@ -31,7 +35,7 @@ class MrpPrintLabel(models.TransientModel):
         res = self.read(cr, uid, ids, ['lote_impresion'], context=context)
         res = res and res[0] or {}
         datas['form'] = res
-        if res.get('id',False):
+        if res.get('id', False):
             datas['ids'] = [res['id']]
         return self.pool['report'].get_action(
             cr, uid, [],

@@ -5,8 +5,8 @@
 {
     "name": "MRP Workflow Print Label",
     "summary": "Print MRP Workflow Label after Production",
-    "version": "9.0.1.0.0",
-    "category": "Hidden",
+    "version": "8.0.1.0.0",
+    "category": "Manufacture",
     "website": "https://www.jarsa.com.mx/",
     "author": "JARSA Sistemas, S.A. de C.V.",
     "license": "AGPL-3",
