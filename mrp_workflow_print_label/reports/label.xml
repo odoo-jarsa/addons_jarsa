@@ -14,6 +14,7 @@
                                 <th>Lote de Corte</th>
                                 <td><span t-esc="data['form']['lote_corte']"/></td>
                                 <td rowspan="2"><span t-esc="data['form']['cantidad']"/></td>
+                                <td rowspan="2" placeholder="cantidad por caja"></td>
                             </tr>
                             <tr>
                                 <th>Descripcion</th>
