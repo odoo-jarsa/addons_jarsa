@@ -3,14 +3,45 @@
     <data>
         <template id="label_qweb">
             <t t-call="report.html_container">
-                    <t t-call="report.external_layout">
-                        <div class="page">
-                            <h2>Report title</h2>
-                            <p>This object's name is</p>
-                            <span t-esc="data['form']['lote_impresion']"/>
-                        </div>
-
-                    </t>
+                <div class="page">
+                        <table class="table table-striped">
+                            <tr>
+                                <th>Lote de Impresion</th>
+                                <td><span t-esc="data['form']['lote_impresion']"/></td>
+                                <th>Cantidad</th>
+                            </tr>
+                            <tr>
+                                <th>Lote de Corte</th>
+                                <td><span t-esc="data['form']['lote_corte']"/></td>
+                                <td rowspan="2"><span t-esc="data['form']['cantidad']"/></td>
+                            </tr>
+                            <tr>
+                                <th>Descripcion</th>
+                                <td><span t-esc="data['form']['descripcion']"/></td>
+                            </tr>
+                            <tr>
+                                <th>No. Parte</th>
+                                <td><span t-esc="data['form']['parte']"/></td>
+                                <td rowspan="3">Logo</td>
+                            </tr>
+                            <tr>
+                                <th>Auditor/Inpsector</th>
+                                <td><span t-esc="data['form']['auditor']"/></td>
+                                <td><img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo" style="max-height: 45px;"/></td>
+                            </tr>
+                            <tr>
+                                <th>Lote de Pintura</th>
+                                <td><span t-esc="data['form']['lote_pintura']"/></td>
+                            </tr>
+                            <tr>
+                             <th>Responsable</th>
+                            <td><span t-esc="data['form']['user_id'][1]"/></td>
+                            </tr>
+                        </table>
+                        <img 
+                            t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', X, 600, 100)" 
+                            style="width:600px;height:100px"/>
+                </div>
             </t>
         </template>
         <!-- Generates the report in Odoo -->
@@ -19,7 +50,7 @@
             id="print_label_qweb"
             model="mrp.production"
             name="mrp_workflow_print_label.label_qweb"
-            report_type="qweb-pdf"
+            report_type="qweb-html"
             string="Print Label Test"/>
         <!--Traductor de Reporte-->
         <!-- <template id="sale_order_ticket_translate"><t t-call="report.html_container"><t t-foreach="doc_ids" t-as="doc_id"><t t-raw="translate_doc(doc_id, doc_model, 'partner_id.lang', 'sale_order_report_ticket.sale_order_ticket')"/></t></t></template>-->

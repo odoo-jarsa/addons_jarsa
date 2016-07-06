@@ -8,4 +8,6 @@ from openerp import models, fields
 class ResUsers(models.Model):
     _inherit = 'res.users'
 
-    pin = fields.Char(string="PIN")
+    pin = fields.Integer(
+        string='PIN', readonly=True,
+    )

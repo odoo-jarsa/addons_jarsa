@@ -32,11 +32,19 @@ class MrpPrintLabel(models.TransientModel):
         if context is None:
             context = {}
         datas = {'ids': context.get('active_ids', [])}
-        res = self.read(cr, uid, ids, ['lote_impresion'], context=context)
+        res = self.read(cr, uid, ids, [
+            'lote_impresion', 'lote_corte', 'descripcion',
+            'parte', 'auditor', 'lote_pintura', 'bar_code',
+            'cantidad', 'label_type', 'order_id', 'prod_id', 'user_id'
+            ], context=context)
         res = res and res[0] or {}
         datas['form'] = res
         if res.get('id', False):
             datas['ids'] = [res['id']]
+
+        self.pool['mrp.production'].signal_workflow(
+                cr, uid, [res['order_id'][0]], 'done')
+
         return self.pool['report'].get_action(
             cr, uid, [],
             'mrp_workflow_print_label.label_qweb',
