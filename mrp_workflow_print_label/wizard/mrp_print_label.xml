@@ -8,18 +8,15 @@
             <field name="arch" type="xml">
                 <form string="Label">
                     <group string="Lotes">
-                        <field name="lote_impresion" />
                         <field name="lote_corte" />
-                        <field name="lote_pintura" />
-                        <field name="order_id"/>
-                        <!-- field name="lot_id"/> -->
+                        <field name="order_id" invisible="1"/>
                     </group>
                     <group string="Informacion">
                         <field name="descripcion" />
                         <field name="parte"/>
                         <field name="cantidad"/>
-                        <field name="user_id"/>
-                        <field name="prod_id"/>
+                        <field name="user_id" invisible="1"/>
+                        <field name="prod_id" invisible="1"/>
                     </group>
                     <group string="Calidad">
                         <field name="auditor" />

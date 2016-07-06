@@ -7,7 +7,7 @@
             <field name="inherit_id" ref="base.view_users_form"/>
             <field name="arch" type="xml">
                 <field name="login" position='after'>
-                    <field name='pin' placeholder='PIN'/>
+                    <field name='mrp_pin' placeholder='PIN FOR MRP RE-PRINT'/>
                 </field>
             </field>
         </record>

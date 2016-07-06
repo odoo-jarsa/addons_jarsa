@@ -4,7 +4,7 @@
         <template id="label_qweb">
             <t t-call="report.html_container">
                 <div class="page">
-                        <table class="table table-striped">
+                        <table class="table table-striped" border="2">
                             <tr>
                                 <th>Lote de Impresion</th>
                                 <td><span t-esc="data['form']['lote_impresion']"/></td>
@@ -14,7 +14,6 @@
                                 <th>Lote de Corte</th>
                                 <td><span t-esc="data['form']['lote_corte']"/></td>
                                 <td rowspan="2"><span t-esc="data['form']['cantidad']"/></td>
-                                <td rowspan="2" placeholder="cantidad por caja"></td>
                             </tr>
                             <tr>
                                 <th>Descripcion</th>
@@ -23,16 +22,11 @@
                             <tr>
                                 <th>No. Parte</th>
                                 <td><span t-esc="data['form']['parte']"/></td>
-                                <td rowspan="3">Logo</td>
+                                <td rowspan="4"><img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo" style="max-height: 45px;"/></td>
                             </tr>
                             <tr>
                                 <th>Auditor/Inpsector</th>
                                 <td><span t-esc="data['form']['auditor']"/></td>
-                                <td><img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo" style="max-height: 45px;"/></td>
-                            </tr>
-                            <tr>
-                                <th>Lote de Pintura</th>
-                                <td><span t-esc="data['form']['lote_pintura']"/></td>
                             </tr>
                             <tr>
                              <th>Responsable</th>
@@ -41,7 +35,7 @@
                         </table>
                         <img 
                             t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', X, 600, 100)" 
-                            style="width:600px;height:100px"/>
+                            style="width:300px;height:100px"/>
                 </div>
             </t>
         </template>
