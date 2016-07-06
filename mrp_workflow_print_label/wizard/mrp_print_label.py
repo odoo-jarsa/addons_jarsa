@@ -32,7 +32,11 @@ class MrpPrintLabel(models.TransientModel):
         if context is None:
             context = {}
         datas = {'ids': context.get('active_ids', [])}
-        res = self.read(cr, uid, ids, ['lote_impresion'], context=context)
+        res = self.read(cr, uid, ids, [
+            'lote_impresion', 'lote_corte', 'descripcion',
+            'parte', 'auditor', 'lote_pintura', 'bar_code',
+            'cantidad', 'label_type', 'order_id', 'prod_id', 'user_id'
+            ], context=context)
         res = res and res[0] or {}
         datas['form'] = res
         if res.get('id', False):

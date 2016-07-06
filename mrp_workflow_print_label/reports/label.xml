@@ -3,12 +3,43 @@
     <data>
         <template id="label_qweb">
             <t t-call="report.html_container">
-                    <t t-call="report.external_layout">
-                        <div class="page">
-                            <h2>Report title</h2>
-                            <p>This object's name is</p>
-                            <span t-esc="data['form']['lote_impresion']"/>
-                        </div>
+                        <table class="table table-striped">
+                            <tr>
+                                <th>Lote de Impresion</th>
+                                <td><span t-esc="data['form']['lote_impresion']"/></td>
+                            </tr>
+                            <tr>
+                                <th>Lote de Corte</th>
+                                <td><span t-esc="data['form']['lote_corte']"/></td>
+                                <td rowspan="2" placeholder="cantidad por caja"></td>
+                            </tr>
+                            <tr>
+                                <th>Descripcion</th>
+                                <td><span t-esc="data['form']['descripcion']"/></td>
+                            </tr>
+                            <tr>
+                                <th>No. Parte</th>
+                                <td><span t-esc="data['form']['parte']"/></td>
+                                <td rowspan="3">Logo</td>
+                            </tr>
+                            <tr>
+                                <th>Auditor/Inpsector</th>
+                                <td><span t-esc="data['form']['auditor']"/></td>
+                            </tr>
+                            <tr>
+                                <th>Lote de Pintura</th>
+                                <td><span t-esc="data['form']['lote_pintura']"/></td>
+                            </tr>
+                            <tr>
+                             <th>Responsable</th>
+                            <td><span t-esc="data['form']['user_id'][1]"/></td>
+                            </tr>
+                        </table>
+                        <img 
+                            t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % (o.code, o.name, 600, 100)" 
+                            style="width:300px;height:50px"/>
+                    </div>
+            </t>
 
                     </t>
             </t>
