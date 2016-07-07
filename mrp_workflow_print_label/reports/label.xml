@@ -3,40 +3,42 @@
     <data>
         <template id="label_qweb">
             <t t-call="report.html_container">
+              <t t-foreach="docs" t-as="doc">
                 <div class="page">
-                        <table class="table table-striped" border="2">
+                        <table class="table table-striped" border="2px">
                             <tr>
                                 <th>Lote de Impresion</th>
-                                <td><span t-esc="data['form']['lote_impresion']"/></td>
+                                <td><span t-field="doc.lote_impresion"/></td>
                                 <th>Cantidad</th>
                             </tr>
                             <tr>
                                 <th>Lote de Corte</th>
-                                <td><span t-esc="data['form']['lote_corte']"/></td>
-                                <td rowspan="2"><span t-esc="data['form']['cantidad']"/></td>
+                                <td><span t-esc="doc.lote_corte"/></td>
+                                <td rowspan="2"><span t-esc="doc.cantidad"/></td>
                             </tr>
                             <tr>
                                 <th>Descripcion</th>
-                                <td><span t-esc="data['form']['descripcion']"/></td>
+                                <td><span t-esc="doc.descripcion"/></td>
                             </tr>
                             <tr>
                                 <th>No. Parte</th>
-                                <td><span t-esc="data['form']['parte']"/></td>
-                                <td rowspan="4"><img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo" style="max-height: 45px;"/></td>
+                                <td><span t-esc="doc.parte"/></td>
+                                <!-- <td rowspan="4"><img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo" style="max-height:60px;align:left"/></td> -->
                             </tr>
                             <tr>
                                 <th>Auditor/Inpsector</th>
-                                <td><span t-esc="data['form']['auditor']"/></td>
+                                <td><span t-esc="doc.auditor"/></td>
                             </tr>
                             <tr>
                              <th>Responsable</th>
-                            <td><span t-esc="data['form']['user_id'][1]"/></td>
+                            <td><span t-esc="doc.user_id.name"/></td>
                             </tr>
                         </table>
                         <img 
                             t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', X, 600, 100)" 
                             style="width:300px;height:100px"/>
                 </div>
+              </t>
             </t>
         </template>
         <!-- Generates the report in Odoo -->

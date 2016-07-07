@@ -20,6 +20,7 @@ class MrpProduction(models.Model):
     lote_corte = fields.Char(string='Lote de Descripcion', readonly=True)
     descripcion = fields.Char(string='Nombre del Producto', readonly=True)
     parte = fields.Char(string='No.Parte', readonly=True)
+    cantidad = fields.Char(string='Cantidad', readonly=True)
     auditor = fields.Char(string='Auditor/Inspector', readonly=True)
     bar_code = fields.Char(string='Codigo de Barras', readonly=True)
 
