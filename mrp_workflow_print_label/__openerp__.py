@@ -17,6 +17,7 @@
     ],
     "data": [
         'wizard/mrp_print_label.xml',
+        'wizard/mrp_print_label_validate.xml',
         'views/mrp_view.xml',
         'views/mrp_workflow.xml',
         'views/res_users.xml',

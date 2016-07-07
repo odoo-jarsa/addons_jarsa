@@ -28,12 +28,12 @@ class MrpPrintLabelValidate(models.TransientModel):
                 print 'pin invalido'
         view_id = self.pool.get('ir.model.data').get_object_reference(
                 cr, uid, 'mrp_workflow_print_label', 'mrp_print_label_wizard')
-            return {
-                'name': "MRP Workflow Print Label Wizard",
-                'view_mode': 'form',
-                'view_id': view_id[1],
-                'view_type': 'form',
-                'res_model': 'mrp.print.label',
-                'type': 'ir.actions.act_window',
-                'target': 'new',
-            }
+        return {
+            'name': "MRP Workflow Print Label Wizard",
+            'view_mode': 'form',
+            'view_id': view_id[1],
+            'view_type': 'form',
+            'res_model': 'mrp.print.label',
+            'type': 'ir.actions.act_window',
+            'target': 'new',
+        }
