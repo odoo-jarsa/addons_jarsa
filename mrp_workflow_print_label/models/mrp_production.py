@@ -16,13 +16,8 @@ class MrpProduction(models.Model):
              ('in_production', 'Production Started'),
              ('print_label', 'Print Label'),
              ('done', 'Done')])
-    lote_impresion = fields.Char(string="Lote", readonly=True)
-    lote_corte = fields.Char(string='Lote de Descripcion', readonly=True)
-    descripcion = fields.Char(string='Nombre del Producto', readonly=True)
-    parte = fields.Char(string='No.Parte', readonly=True)
-    cantidad = fields.Char(string='Cantidad', readonly=True)
-    auditor = fields.Char(string='Auditor/Inspector', readonly=True)
-    bar_code = fields.Char(string='Codigo de Barras', readonly=True)
+    print_lot = fields.Char(string="Printing Lot", readonly=True)
+    container_qty = fields.Integer(string='Quantity per Lot', readonly=True)
 
     @api.multi
     def action_state_print_label(self):

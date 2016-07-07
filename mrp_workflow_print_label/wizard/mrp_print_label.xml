@@ -3,21 +3,16 @@
     <data>
         <!--Print Label -->
         <record id="view_mrp_print_label_wizard" model="ir.ui.view">
-            <field name="name">MRP Workflow Print Label Wizard</field>
+            <field name="name">Label Printing</field>
             <field name="model">mrp.print.label</field>
             <field name="arch" type="xml">
                 <form string="Label">
-                    <group string="Lotes">
-                        <field name="lote_corte" />
+                    <group string="Lots">
+                        <field name="print_lot" />
                         <field name="order_id" invisible="1"/>
                     </group>
-                    <group string="Informacion">
-                        <field name="descripcion" />
-                        <field name="parte"/>
-                        <field name="cantidad"/>
-                    </group>
-                    <group string="Calidad">
-                        <field name="auditor" />
+                    <group string="Information">
+                        <field name="container_qty"/>
                     </group>
                     <footer>
                         <button name="print_report" type="object" string="Print" class="oe_highlight" icon="gtk-print"/>

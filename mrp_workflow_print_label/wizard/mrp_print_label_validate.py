@@ -19,7 +19,8 @@ class MrpPrintLabelValidate(models.TransientModel):
         if len(user) == 0 or self.pin is False:
             raise UserError(_('Invalid PIN'))
         else:
-            self.order_id.message_post(body="Re-Printed by: %s" % user.name)
+            self.order_id.message_post(body=_(
+                "Re-Print Authorized by: %s") % user.name)
             context = dict(
                 self.env.context or {},
                 active_ids=[self.order_id.id],

@@ -4,31 +4,30 @@
         <template id="label_qweb">
             <t t-call="report.html_container">
               <t t-foreach="docs" t-as="doc">
-                <t t-call="report.external_layout">
                     <div class="page">
                         <table class="table table-striped" border="2px">
                             <tr>
-                                <th>Lote de Impresion</th>
-                                <td><span t-field="doc.lote_impresion"/></td>
-                                <th>Cantidad</th>
+                                <th>Printing Lot</th>
+                                <td><span t-field="doc.print_lot"/></td>
+                                <th>Quantity</th>
                             </tr>
                             <tr>
-                                <th>Lote de Corte</th>
-                                <td><span t-esc="doc.lote_corte"/></td>
-                                <td rowspan="2"><span t-esc="doc.cantidad"/></td>
+                                <th>Cut Lot</th>
+                                <td><span t-esc="doc.move_created_ids2.lot_ids.name"/></td>
+                                <td rowspan="2"><span t-esc="doc.container_qty"/></td>
                             </tr>
                             <tr>
-                                <th>Descripcion</th>
-                                <td><span t-esc="doc.descripcion"/></td>
+                                <th>Description</th>
+                                <td><span t-esc="doc.product_id.name"/></td>
                             </tr>
                             <tr>
-                                <th>No. Parte</th>
-                                <td><span t-esc="doc.parte"/></td>
-                                <td rowspan="4"><img t-if="doc.company_id.logo" t-att-src="'data:image/png;base64,%s' % doc.company_id.logo" style="max-height: 45px;"/></td>
+                                <th>Part Number</th>
+                                <td><span t-esc="doc.product_id.default_code"/></td>
+                                <td rowspan="4"><img t-if="res_company.logo" t-att-src="'data:image/png;base64,%s' % res_company.logo" style="max-height: 45px;"/></td>
                             </tr>
                             <tr>
-                                <th>Auditor/Inpsector</th>
-                                <td><span t-esc="doc.auditor"/></td>
+                                <th>Auditor/Inspector</th>
+                                <td><span t-esc="user.name"/></td>
                             </tr>
                             <tr>
                              <th>Responsable</th>
@@ -37,7 +36,6 @@
                         </table>
                         <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', 'doc.name', 600, 100)" style="width:300px;height:50px"/>
                     </div>
-                </t>
               </t>
             </t>
         </template>
