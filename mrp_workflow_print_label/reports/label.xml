@@ -4,7 +4,8 @@
         <template id="label_qweb">
             <t t-call="report.html_container">
               <t t-foreach="docs" t-as="doc">
-                <div class="page">
+                <t t-call="report.external_layout">
+                    <div class="page">
                         <table class="table table-striped" border="2px">
                             <tr>
                                 <th>Lote de Impresion</th>
@@ -23,7 +24,7 @@
                             <tr>
                                 <th>No. Parte</th>
                                 <td><span t-esc="doc.parte"/></td>
-                                <!-- <td rowspan="4"><img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo" style="max-height:60px;align:left"/></td> -->
+                                <td rowspan="4"><img t-if="doc.company_id.logo" t-att-src="'data:image/png;base64,%s' % doc.company_id.logo" style="max-height: 45px;"/></td>
                             </tr>
                             <tr>
                                 <th>Auditor/Inpsector</th>
@@ -34,10 +35,9 @@
                             <td><span t-esc="doc.user_id.name"/></td>
                             </tr>
                         </table>
-                        <img 
-                            t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', X, 600, 100)" 
-                            style="width:300px;height:100px"/>
-                </div>
+                        <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', 'doc.name', 600, 100)" style="width:300px;height:50px"/>
+                    </div>
+                </t>
               </t>
             </t>
         </template>

@@ -8,12 +8,12 @@ from openerp import api, fields, models
 class MrpPrintLabel(models.TransientModel):
     _name = 'mrp.print.label'
 
+    company_id = fields.Many2one('res.company')
     lote_impresion = fields.Char(string="Lote de Impresion", readonly=True)
     lote_corte = fields.Char(string='Lote de Descripcion')
     descripcion = fields.Char(string='Nombre del Producto')
     parte = fields.Char(string='No.Parte')
     auditor = fields.Char(string='Auditor/Inspector')
-    bar_code = fields.Char(string='Codigo de Barras')
     cantidad = fields.Char(string='Cantidad')
     order_id = fields.Many2one(
         'mrp.production', string="Order", readonly=True)
@@ -26,11 +26,11 @@ class MrpPrintLabel(models.TransientModel):
             'descripcion': self.descripcion,
             'parte': self.parte,
             'auditor': self.auditor,
-            'bar_code': self.bar_code,
             'cantidad': self.cantidad,
             'state': 'done',
             })
-        self.order_id.message_post(body="user:")
+        self.order_id.message_post(
+            body="Printed by: %s" % (self.order_id.user_id.name))
         context = dict(
             self.env.context or {},
             active_ids=[self.order_id.id],

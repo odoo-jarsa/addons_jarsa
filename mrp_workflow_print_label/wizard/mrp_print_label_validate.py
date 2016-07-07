@@ -16,10 +16,10 @@ class MrpPrintLabelValidate(models.TransientModel):
     def validate(self):
         user = self.env['res.users'].search(
             [('mrp_pin', '=', self.pin)])
-        if len(user) == 0:
+        if len(user) == 0 or self.pin is False:
             raise UserError(_('Invalid PIN'))
         else:
-            self.order_id.message_post(body="user: %s" % user[0].name)
+            self.order_id.message_post(body="Re-Printed by: %s" % user.name)
             context = dict(
                 self.env.context or {},
                 active_ids=[self.order_id.id],
