@@ -8,7 +8,7 @@
             <field name="arch" type="xml">
                 <form string="Label">
                     <group string="Label">
-                        <fiel name="user_id"/>
+                        <field name="order_id" invisible="1"/>
                         <field name="pin"/>
                     </group>
                     <footer>

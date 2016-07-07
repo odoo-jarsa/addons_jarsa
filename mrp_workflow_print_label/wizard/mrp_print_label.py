@@ -2,7 +2,7 @@
 # © 2016 Jarsa Sistemas, S.A. de C.V.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from openerp import fields, models
+from openerp import api, fields, models
 
 
 class MrpPrintLabel(models.TransientModel):
@@ -17,31 +17,26 @@ class MrpPrintLabel(models.TransientModel):
     cantidad = fields.Char(string='Cantidad')
     order_id = fields.Many2one(
         'mrp.production', string="Order", readonly=True)
-    prod_id = fields.Many2one(
-        string='Product', related='order_id.product_id')
-    user_id = fields.Many2one(
-        string='Responsable', related='order_id.user_id')
-    # lot_id = fields.Char(
-    #     string="Lote", related="order_id.move_created_ids2")
 
-    def print_report(self, cr, uid, ids, context=None):
-        if context is None:
-            context = {}
-        state = self.pool['mrp.production'].browse(cr, uid, ids, context=context)
-        datas = {'ids': context.get('active_ids', [])}
-        res = self.read(cr, uid, ids, [
-            'lote_impresion', 'lote_corte', 'descripcion',
-            'parte', 'auditor', 'bar_code',
-            'cantidad', 'label_type', 'order_id', 'prod_id', 'user_id'
-            ], context=context)
-        res = res and res[0] or {}
-        datas['form'] = res
-        if res.get('id', False):
-            datas['ids'] = [res['id']]
-        for rec in state:
-            rec.state = 'done'
-        datas['form']['lote_impresion'] = state.move_created_ids2.lot_ids.name
-        return self.pool['report'].get_action(
-            cr, uid, [],
-            'mrp_workflow_print_label.label_qweb',
-            data=datas, context=context)
+    @api.multi
+    def print_report(self):
+        self.order_id.write({
+            'lote_impresion': self.lote_impresion,
+            'lote_corte': self.lote_corte,
+            'descripcion': self.descripcion,
+            'parte': self.parte,
+            'auditor': self.auditor,
+            'bar_code': self.bar_code,
+            'cantidad': self.cantidad,
+            'state': 'done',
+            })
+        self.order_id.message_post(body="user:")
+        context = dict(
+            self.env.context or {},
+            active_ids=[self.order_id.id],
+            active_model='mrp.production')
+        return {
+            'type': 'ir.actions.report.xml',
+            'report_name': 'mrp_workflow_print_label.label_qweb',
+            'context': context,
+          }
