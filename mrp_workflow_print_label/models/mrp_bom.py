@@ -2,7 +2,10 @@
 # © 2016 Jarsa Sistemas, S.A. de C.V.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from . import mrp_production
-from . import res_users
-from . import mrp_print_reason
-from . import mrp_bom
+from openerp import fields, models
+
+
+class MrpBom(models.Model):
+    _inherit = 'mrp.bom'
+
+    cloth = fields.Boolean()

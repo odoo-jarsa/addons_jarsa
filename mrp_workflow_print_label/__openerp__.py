@@ -22,6 +22,7 @@
         'views/mrp_print_reason_view.xml',
         'views/mrp_workflow.xml',
         'views/res_users_view.xml',
+        'views/mrp_bom_view.xml',
         'reports/label.xml',
         "security/security.xml",
         "security/ir.model.access.csv",
