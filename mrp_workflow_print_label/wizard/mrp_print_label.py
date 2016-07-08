@@ -12,12 +12,16 @@ class MrpPrintLabel(models.TransientModel):
     container_qty = fields.Integer(string='Quantity per Container')
     order_id = fields.Many2one(
         'mrp.production', string="Order", readonly=True)
+    report_type = fields.Selection([
+        ('cloth', 'Label for Cloth'),
+        ('cover', 'Label for Cover')])
 
     @api.multi
     def print_report(self):
         self.order_id.write({
             'container_qty': self.container_qty,
             'print_lot': self.print_lot,
+            'report_type': self.report_type,
             })
         self.order_id.message_post(
             body=_("Printed by: %s") % (self.order_id.user_id.name))
@@ -27,9 +31,14 @@ class MrpPrintLabel(models.TransientModel):
             active_model='mrp.production')
 
         self.order_id.action_production_end()
+        if self.report_type == 'cover':
+            report_name = 'mrp_workflow_print_label.label_qweb'
+        else:
+            report_name = 'mrp_workflow_print_label.label_cloth'
+
         return {
             'type': 'ir.actions.report.xml',
-            'report_name': 'mrp_workflow_print_label.label_qweb',
+            'report_name': report_name,
             'context': context,
             'docs': self.order_id.id
-          }
+        }

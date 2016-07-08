@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="label_cloth">
+            <t t-call="report.html_container">
+              <t t-foreach="docs" t-as="doc">
+                    <div class="page">
+                        <table class="table table-striped" border="2px">
+                            <tr>
+                                <td rowspan="4"><img t-if="res_company.logo" t-att-src="'data:image/png;base64,%s' % res_company.logo" style="width:150px;height:150px"/></td>
+                                <th>Part Number: </th>
+                                <td><span t-esc="doc.product_id.default_code"/></td>
+                            </tr>
+                            <tr>
+                                <th>Description:</th>
+                                <td><span t-esc="doc.product_id.name"/></td>
+                            </tr>
+                            <tr>
+                                <th>Cut Lot:</th>
+                                <td><span t-esc="doc.move_created_ids2.lot_ids.name"/></td>
+                            </tr>
+                            <tr>
+                                <th>Printing Lot:</th>
+                                <td><span t-field="doc.print_lot"/></td>
+                            </tr>
+                            <tr>
+                                <th>Components Number:</th>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <th>Components Pieces:</th>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <th>Pieces Total:</th>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <th>Quantity: </th>
+                                <td colspan="2"><span t-esc="doc.container_qty"/></td>
+                            </tr>
+                            <tr>
+                                <th>Auditor/Inspector: </th>
+                                <td colspan="2"><span t-esc="user.name"/> </td>
+                            </tr>
+                        </table>
+                        <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', 'doc.name', 600, 100)" style="width:300px;height:50px;aling:center"/>
+                    </div>
+              </t>
+            </t>
+        </template>
+        <!-- Generates the report in Odoo -->
+        <report
+            file="mrp_workflow_print_label.label_qweb"
+            id="print_label_cloth"
+            model="mrp.production"
+            name="mrp_workflow_print_label.label_cloth"
+            report_type="qweb-html"
+            string="Print Label Test"/>
+    </data>
+</openerp>

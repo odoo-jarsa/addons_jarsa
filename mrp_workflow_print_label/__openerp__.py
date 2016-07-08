@@ -22,5 +22,6 @@
         'views/mrp_workflow.xml',
         'views/res_users_view.xml',
         'reports/label.xml',
+        'reports/label2.xml',
     ],
 }

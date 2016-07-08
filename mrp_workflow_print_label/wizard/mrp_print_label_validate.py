@@ -25,8 +25,14 @@ class MrpPrintLabelValidate(models.TransientModel):
                 self.env.context or {},
                 active_ids=[self.order_id.id],
                 active_model='mrp.production')
+            if self.order_id.report_type == 'cover':
+                report_name = 'mrp_workflow_print_label.label_qweb'
+            else:
+                report_name = 'mrp_workflow_print_label.label_cloth'
+
             return {
                 'type': 'ir.actions.report.xml',
-                'report_name': 'mrp_workflow_print_label.label_qweb',
+                'report_name': report_name,
                 'context': context,
-              }
+                'docs': self.order_id.id
+            }

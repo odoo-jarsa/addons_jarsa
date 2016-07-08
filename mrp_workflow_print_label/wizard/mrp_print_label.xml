@@ -7,6 +7,7 @@
             <field name="model">mrp.print.label</field>
             <field name="arch" type="xml">
                 <form string="Label">
+                    <field name='report_type' placeholder='Label Type'/>
                     <group string="Lots">
                         <field name="print_lot" />
                         <field name="order_id" invisible="1"/>
