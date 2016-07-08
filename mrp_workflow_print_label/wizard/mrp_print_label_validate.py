@@ -28,7 +28,7 @@ class MrpPrintLabelValidate(models.TransientModel):
 
             return {
                 'type': 'ir.actions.report.xml',
-                'report_name': 'mrp_workflow_print_label.label_qweb',
+                'report_name': 'mrp_workflow_print_label.label_cut',
                 'context': context,
                 'docs': self.order_id.id
             }

@@ -27,10 +27,17 @@ class MrpPrintLabel(models.TransientModel):
             active_model='mrp.production')
 
         self.order_id.action_production_end()
-
-        return {
-            'type': 'ir.actions.report.xml',
-            'report_name': 'mrp_workflow_print_label.label_qweb',
-            'context': context,
-            'docs': self.order_id.id
-        }
+        if self.order_id.bom_id.cloth:
+            return {
+                'type': 'ir.actions.report.xml',
+                'report_name': 'mrp_workflow_print_label.label_cloth',
+                'context': context,
+                'docs': self.order_id.id
+            }
+        else:
+            return {
+                'type': 'ir.actions.report.xml',
+                'report_name': 'mrp_workflow_print_label.label_cut',
+                'context': context,
+                'docs': self.order_id.id
+            }
