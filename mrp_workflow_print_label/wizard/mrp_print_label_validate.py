@@ -34,8 +34,5 @@ class MrpPrintLabelValidate(models.TransientModel):
                 'type': 'ir.actions.report.xml',
                 'report_name': report_name,
                 'context': context,
-<<<<<<< Updated upstream
                 'docs': self.order_id.id
-=======
->>>>>>> Stashed changes
             }
