@@ -4,3 +4,4 @@
 
 from . import mrp_production
 from . import res_users
+from . import mrp_print_reason
