@@ -89,15 +89,15 @@
                             </tr>
                             <tr>
                                 <th>Components Number:</th>
-                                <td colspan="2"/>
+                                <td colspan="2"><span t-field="doc.components_number"/></td>
                             </tr>
                             <tr>
                                 <th>Components Pieces:</th>
-                                <td colspan="2"/>
+                                <td colspan="2"><span t-field="doc.components_pieces"/></td>
                             </tr>
                             <tr>
                                 <th>Pieces Total:</th>
-                                <td colspan="2"/>
+                                <td colspan="2"><span t-field="doc.total_pieces"/></td>
                             </tr>
                             <tr>
                                 <th>Quantity: </th>
