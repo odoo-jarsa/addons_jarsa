@@ -12,6 +12,7 @@ class MrpPrintLabel(models.TransientModel):
     container_qty = fields.Integer(string='Quantity per Container')
     order_id = fields.Many2one(
         'mrp.production', string="Order", readonly=True)
+    cloth_rolls = fields.Char(string="Cloth Rolls")
     bom_cloth = fields.Boolean(related='order_id.bom_id.cloth')
     components_number = fields.Integer(string="Components Number")
     components_pieces = fields.Integer(string="Components Pieces")

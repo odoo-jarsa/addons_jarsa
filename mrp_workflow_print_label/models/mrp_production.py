@@ -20,6 +20,7 @@ class MrpProduction(models.Model):
     container_qty = fields.Integer(string='Quantity per Lot', readonly=True)
     components_number = fields.Integer(string="Components Number")
     components_pieces = fields.Integer(string="Components Pieces")
+    cloth_rolls = fields.Char(string="Cloth Rolls")
     total_pieces = fields.Integer(readonly=True)
 
     @api.multi
