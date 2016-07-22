@@ -44,6 +44,10 @@ virtualenv:
 
 install:
   - pip install --user -r requirements.txt
+  - conda init
+  - conda update conda --yes
+  - conda create -p $HOME/py --yes pandas "python=$TRAVIS_PYTHON_VERSION"
+  - export PATH=$HOME/py/bin:$PATH
   - git clone --depth=1 https://github.com/OCA/maintainer-quality-tools.git ${HOME}/maintainer-quality-tools
   - export PATH=${HOME}/maintainer-quality-tools/travis:${PATH}
   - travis_install_nightly
