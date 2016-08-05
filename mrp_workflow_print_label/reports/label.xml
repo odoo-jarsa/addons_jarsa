@@ -104,7 +104,7 @@
                             <tr>
                                 <th>Quantity: </th>
                                 <td colspan="2">
-                                    <span t-esc="doc.container_qty"/>
+                                    <span t-esc="doc.container_qty" style="font-size:11px;font-weight:bold;"/>
                                 </td>
                             </tr>
                             <tr>
