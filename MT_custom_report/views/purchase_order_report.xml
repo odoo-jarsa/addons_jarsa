@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="report_purchase_order_custom">
+            <t t-call="report.html_container">
+                <t t-as="o" t-foreach="docs">
+                    <t t-call="MT_custom_report.report_purchase_order_custom_document" t-lang="o.partner_id.lang"/>
+                </t>
+            </t>
+        </template>
+        <template id="report.bias_assets_common_style" inherit_id="report.assets_common">
+            <xpath expr="." position="inside">
+                <style rel="stylesheet" type="text/css">.report_purchase_order { font-size: 10px !important; }
+                    .report_purchase_order h2 {
+                        font-size: 16px !important;
+                    }
+                    .report_purchase_order strong.title {
+                        font-size:16px !important;
+                        text-align:center;
+                        font-weight:bold !important;
+                        color: #A43E89 !important;
+                    }
+                    .report_purchase_order .title_company{
+                        font-weight:bold !important;
+                        color: #337ab7 !important;
+                    }
+                    .report_purchase_order .address {
+                        margin-bottom: 5px;
+                        font-style: normal;
+                        line-height: 1.42857143;
+                    }
+                    .report_purchase_order .table thead tr &gt;th.table_datas { 
+                        border: 1px solid #616161 !important; 
+                        border-bottom: 1px solid #616161 !important; 
+                        background-color: #616161 !important;
+                        color:#FFFFFF !important;
+                        text-align:center !important;
+                    }
+                </style>
+            </xpath>
+        </template>
+        <template id="report_purchase_order_custom_document">
+            <t t-call="report.html_container">
+                <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})"/>
+                <div class="page">
+                    <section class="report_purchase_order" id="report_purchase_order">
+                        <div class="container">
+                            <div class="row mt32 mb32">
+                                <div class="col-xs-4 text-center">
+                                    <div style="text-align:center;">
+                                        <img class="img img-responsive" style="max-height: 104px;" t-att-src="'data:image/png;base64,%s' % res_company.logo" t-if="res_company.logo"/>
+                                    </div>
+                                </div>
+                                <div class="col-xs-4 text-center">
+                                    <h2>
+                                        <strong>Orden de Compra: </strong>
+                                        <strong class="title" t-field="o.name"/>
+                                    </h2>
+                                </div>
+                                <div class="col-xs-4 text-right" style="vertical-align: middle !important;">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-xs-12 text-center" style="vertical-align: middle !important;">
+                                                <t t-if="o.date_order">
+                                                    <span t-esc="time.strftime('%A, %d %B %Y',time.strptime(o.date_order,'%Y-%m-%d %H:%M:%S')).upper()"/>
+                                                </t>
+                                            </div>
+                                            <div class="col-xs-6 text-right" style="vertical-align: middle !important;">
+                                                <spam>
+                                                    <strong>OCI: </strong>
+                                                </spam>
+                                                <br/>
+                                                <spam>
+                                                    <strong>POC: </strong>
+                                                </spam>
+                                                <br/>
+                                                <spam>
+                                                    <strong>PI: </strong>
+                                                </spam>
+                                                <br/>
+                                            </div>
+                                            <div class="col-xs-6 text-left" style="vertical-align: middle !important;">
+                                                <spam t-field="o.partner_ref"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <table class="table table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th class="table_datas" style="width: 33%;">Proveedor</th>
+                                        <th class="table_datas" style="width: 34%;">Facturar y Enviar la Factura a: </th>
+                                        <th class="table_datas" style="width: 33%;">Dirección de Entrega: </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="table_datas_lines" style="width: 33%;">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-xs-12" style="vertical-align: top !important;">
+                                                        <spam class="title_company text-center" t-att-style="Address_Company" t-field="o.partner_id.name"/>
+                                                        <br/>
+                                                        <div class="vat" t-if="o.partner_id.vat">
+                                                            <i aria-hidden="true" class="fa fa-building"/>
+                                                            <spam style=" font-weight:bold;">RFC: </spam>
+                                                            <spam t-field="o.partner_id.vat"/>
+                                                        </div>
+                                                        <address class="address">
+                                                            <div class="vat">
+                                                                <i aria-hidden="true" class="fa fa-map-marker"/>
+                                                                <spam style="font-weight:bold;">Dirección: </spam>
+                                                            </div>
+                                                            <div t-if="o.partner_id.street">
+                                                                <spam style="font-size:11px; color:#FFFFFF !important; ">....</spam>
+                                                                <spam t-field="o.partner_id.street"/>
+                                                                <spam t-field="o.partner_id.l10n_mx_street3"/>
+                                                                <br/>
+                                                            </div>
+                                                            <div t-if="o.partner_id.street2">
+                                                                <spam style="font-size:11px; color:#FFFFFF !important; ">....</spam>
+                                                                <spam t-field="o.partner_id.street2"/>
+                                                            </div>
+                                                            <div t-if="o.partner_id.zip">
+                                                                <spam style="font-size:11px; color:#FFFFFF !important; ">....</spam>
+                                                                <spam>C.P: </spam>
+                                                                <spam t-field="o.partner_id.zip"/>
+                                                            </div>
+                                                            <div>
+                                                                <spam style="font-size:11px; color:#FFFFFF !important; ">....</spam>
+                                                                <spam t-field="o.partner_id.city_id.name"/>,
+                                                                <spam t-field="o.partner_id.state_id.name"/>,
+                                                                <spam t-field="o.partner_id.country_id.code"/></div>
+                                                        </address>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="table_datas_lines" style="width: 34%;">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-xs-12" style="vertical-align: top !important;">
+                                                        <spam class="title_company text-center" t-att-style="Address_Company" t-field="o.company_id.partner_id.name"/>
+                                                        <br/>
+                                                        <address class="address">
+                                                            <div class="vat">
+                                                                <i aria-hidden="true" class="fa fa-map-marker"/>
+                                                                <spam style="font-weight:bold;">Dirección: </spam>
+                                                            </div>
+                                                            <div t-if="o.company_id.partner_id.street">
+                                                                <spam style="font-size:11px; color:#FFFFFF !important; ">....</spam>
+                                                                <spam t-field="o.company_id.partner_id.street"/>
+                                                                <spam t-field="o.company_id.partner_id.l10n_mx_street3"/>
+                                                                <br/>
+                                                            </div>
+                                                            <div t-if="o.company_id.partner_id.street2">
+                                                                <spam style="font-size:11px; color:#FFFFFF !important; ">....</spam>
+                                                                <spam t-field="o.company_id.partner_id.street2"/>
+                                                            </div>
+                                                            <div t-if="o.company_id.partner_id.zip">
+                                                                <spam style="font-size:11px; color:#FFFFFF !important; ">....</spam>
+                                                                <spam>C.P: </spam>
+                                                                <spam t-field="o.company_id.partner_id.zip"/>
+                                                            </div>
+                                                            <div>
+                                                                <spam style="font-size:11px; color:#FFFFFF !important; ">....</spam>
+                                                                <spam t-field="o.company_id.partner_id.city"/>, 
+                                                                
+                                                                <spam t-field="o.company_id.partner_id.state_id.name"/>
+                                                                , 
+                                                                
+                                                                <spam t-field="o.company_id.partner_id.country_id.code"/></div>
+                                                        </address>
+                                                        <div class="vat" t-if="o.company_id.partner_id.vat">
+                                                            <i aria-hidden="true" class="fa fa-building"/>
+                                                            <spam style=" font-weight:bold;">RFC: </spam>
+                                                            <spam t-field="o.company_id.partner_id.vat"/>
+                                                        </div>
+                                                        <div t-if="o.company_id.partner_id.phone">
+                                                            <i aria-hidden="true" class="fa fa-phone-square"/>
+                                                            <spam style="font-weight:bold;">Tel: </spam>
+                                                            <spam t-field="o.company_id.partner_id.phone"/>
+                                                        </div>
+                                                        <div t-if="o.company_id.partner_id.fax">
+                                                            <i aria-hidden="true" class="fa fa-fax"/>
+                                                            <spam style=" font-weight:bold;">Fax: </spam>
+                                                            <spam t-field="o.company_id.partner_id.fax"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="table_datas_lines" style="width: 33%;">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-xs-12" style="vertical-align: top !important;">
+                                                        <t t-set="entrega" t-value="o.picking_type_id.warehouse_id.partner_id"/>
+                                                        <t t-if="entrega">
+                                                            <spam>A nombre de: </spam>
+                                                            <spam class="title_company" t-att-style="Address_Company" t-field="entrega.name"/>
+                                                            <br/>
+                                                            <address class="address">
+                                                                <div class="vat">
+                                                                    <i aria-hidden="true" class="fa fa-map-marker"/>
+                                                                    <spam style="font-weight:bold;">Dirección: </spam>
+                                                                </div>
+                                                                <div t-if="o.company_id.partner_id.street">
+                                                                    <spam style="font-size:11px; color:#FFFFFF !important; ">....</spam>
+                                                                    <spam t-field="entrega.street"/>
+                                                                    <spam t-field="entrega.l10n_mx_street3"/>
+                                                                    <br/>
+                                                                </div>
+                                                                <div t-if="entrega.street2">
+                                                                    <spam style="font-size:11px; color:#FFFFFF !important; ">....</spam>
+                                                                    <spam>Colonia:</spam>
+                                                                    <spam t-field="entrega.street2"/>
+                                                                </div>
+                                                                <div>
+                                                                    <spam style="font-size:11px; color:#FFFFFF !important; ">....</spam>
+                                                                    <spam>Ciudad:</spam>
+                                                                    <spam t-field="entrega.city"/>
+                                                                </div>
+                                                                <div>
+                                                                    <spam style="font-size:11px; color:#FFFFFF !important; ">....</spam>
+                                                                    <spam>Estado:</spam>
+                                                                    <spam t-field="entrega.state_id.name"/>, 
+                                                                    <spam t-field="entrega.country_id.code"/></div>
+                                                                    <div t-if="entrega.zip">
+                                                                    <spam style="font-size:11px; color:#FFFFFF !important; ">....</spam>
+                                                                    <spam>C.P: </spam>
+                                                                    <spam t-field="entrega.zip"/>
+                                                                </div>
+                                                                <div t-if="entrega.phone">
+                                                                <i aria-hidden="true" class="fa fa-phone-square"/>
+                                                                <spam style=" font-weight:bold;">Tel: </spam>
+                                                                <spam t-field="entrega.phone"/>
+                                                            </div>
+                                                            </address>
+                                                        </t>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <t t-set="item" t-value="1"/>
+                            <table class="table table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th class="table_datas">#</th>
+                                        <th class="table_datas">Part #</th>
+                                        <th class="table_datas">Mfg. </th>
+                                        <th class="table_datas" style="width: 25%;">Descripción. </th>
+                                        <th class="table_datas">Cant. </th>
+                                        <th class="table_datas">Unidad. </th>
+                                        <th class="table_datas">P.Unit </th>
+                                        <th class="table_datas">Des. </th>
+                                        <th class="table_datas">Total </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr t-as="l" t-foreach="o.order_line">
+                                        <td>
+                                            <span t-esc="item"/>
+                                        </td>
+                                        <td>
+                                            <spam t-field="l.product_id.default_code"/>
+                                        </td>
+                                        <td>
+                                            <spam t-field="l.product_id.categ_id.name"/>
+                                        </td>
+                                        <td style="width: 25%;">
+                                            <spam t-field="l.product_id.name"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="l.product_qty"/>
+                                        </td>
+                                        <td>
+                                            <span groups="product.group_uom" t-field="l.product_uom.name"/>
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-field="l.price_unit" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;o.currency_id&quot;}"/>
+                                        </td>
+                                        <td>-- </td>
+                                        <td class="text-right">
+                                            <span t-field="l.price_subtotal" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;o.currency_id&quot;}"/>
+                                        </td>
+                                        <t t-set="item" t-value="item+1"/>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td/>
+                                        <td colspan="3">
+                                            <spam style=" font-weight:bold;">Moneda: </spam>
+                                            <spam t-field="o.currency_id.name"/>
+                                        </td>
+                                        <td/>
+                                        <td class="text-right" colspan="3">
+                                            <spam style=" font-weight:bold;">Subtotal: </spam>(
+                                            <spam t-field="o.currency_id.name"/>
+                                            )</td>
+                                        <td class="text-right">
+                                            <span t-field="o.amount_untaxed" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;o.currency_id&quot;}"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td/>
+                                        <td colspan="3">
+                                            <spam style=" font-weight:bold;">Método de Pago: </spam>
+                                            <spam t-field="o.payment_method_id.name"/>
+                                        </td>
+                                        <td/>
+                                        <td class="text-right" colspan="3">
+                                            <spam style=" font-weight:bold;">Impuestos: </spam>(
+                                            <spam t-field="o.currency_id.name"/>
+                                            )</td>
+                                        <td class="text-right">
+                                            <span t-field="o.amount_tax" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;o.currency_id&quot;}"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td/>
+                                        <td colspan="3"/>
+                                        <td/>
+                                        <td class="text-right" colspan="3">
+                                            <spam style=" font-weight:bold;">Total: </spam>(
+                                            <spam t-field="o.currency_id.name"/>
+                                            )</td>
+                                        <td class="text-right">
+                                            <span t-field="o.amount_total" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;o.currency_id&quot;}"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td/>
+                                            <td colspan="7" class="text-left">
+                                                <spam style=" font-weight:bold;">Notas: </spam>
+                                                <br/>
+                                                <spam t-field="o.notes"/>
+                                            </td>
+                                        <td/>
+                                    </tr>
+                                    <tr>
+                                        <td/>
+                                            <td colspan="7" class="text-center">
+                                                <spam style=" font-weight:bold;">Leyenda: </spam>
+                                                <p class="text-center">Todas las Facturas generadas a <b>Mexicana de Telecomunicaciones S.A. de C.V.</b>
+                                                deberán incluir Número de Orden de Compra y Método de Pago.</p>
+                                            </td>
+                                        <td/>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                            <div class="row mt32 mb32">
+                                <div class="col-xs-4 pull-left">
+                                    <spam style="font-size:12px; font-weight:bold;">Requisitador: </spam>
+                                    <spam t-field="o.create_uid.name"/>
+                                    <br/>
+                                    <br/>
+                                    <spam style="font-size:12px; font-weight:bold;">Comprador: </spam>
+                                    <spam>Jazmin Nevarez</spam>
+                                </div>
+                                <div class="col-xs-4 pull-right">
+                                    <spam style="font-size:12px; font-weight:bold;">Autoriza: </spam>
+                                    <table class="table table-condensed" style=" border:none !important;">
+                                        <tr>
+                                            <td class="text-center" style="border:none !important;">
+                                                <spam>Ing. Jorge Topete</spam>
+                                            </td>
+                                        </tr>
+                                        <tr class="border-black">
+                                            <td class="text-center">
+                                                <spam style="font-size:12px; font-weight:bold;">Gerente Zona Norte, MT Juarez</spam>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </t>
+        </template>
+    </data>
+</openerp>
