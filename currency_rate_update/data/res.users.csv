@@ -1,0 +1,2 @@
+id,active,name,partner_id/id,signature,tz,login
+__export__.res_users_currency,True,Update Currency Rate,__export__.res_partner_currency_rate,Currency Rate,America/Monterrey,update_currency_rate

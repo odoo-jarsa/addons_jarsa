@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+
+        <record model="res.partner" id="currency_rate_update.partner_currency_rate">
+            <field name="name">Currency Rate</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="customer" eval="False"/>
+            <field name="email">soporte@bias.com</field>
+            <field name="notify_email">Never</field>
+        </record>
+
+        <record model="res.users" id="currency_rate_update.user_currency_rate">
+            <field name="company_id" ref="base.main_company"/>
+            <field name="company_ids" eval="[(4, ref('base.main_company'))]"/>
+            <field name="signature"><![CDATA[<span>--<br/>
+Update Currency Rate</span>]]></field>
+            <field name="notify_email">none</field>
+        </record>
+
+    </data>
+</openerp>

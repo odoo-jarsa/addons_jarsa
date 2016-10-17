@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+<openerp>
+    <data>
+
+        <record id="view_currency_update_tree" model="ir.ui.view">
+            <field name="name">res.currency.update.tree</field>
+            <field name="model">res.currency</field>
+            <field name="inherit_id" ref="base.view_currency_tree" />
+            <field name="arch" type="xml">
+                <field name="active" position="before">
+                    <button name="update_currency_rate" type="object" icon="fa-cogs" attrs="{'invisible': [('active', '=', False)]}">Update</button>
+                </field>
+            </field>
+        </record>
+
+        <record id="view_currency_update_form" model="ir.ui.view">
+            <field name="name">res.currency.update.form</field>
+            <field name="model">res.currency</field>
+            <field name="inherit_id" ref="base.view_currency_form" />
+            <field name="arch" type="xml">
+                <header position="inside">
+                    <button name="update_currency_rate" type="object" string="Update" icon="fa-cogs" attrs="{'invisible': [('active', '=', False)]}" />
+                </header>
+            </field>
+        </record>
+
+    </data>
+</openerp>

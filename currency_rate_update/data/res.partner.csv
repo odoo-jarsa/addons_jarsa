@@ -1,0 +1,2 @@
+id,name,active,type,company_id/id,company_type,email,is_company,customer,supplier,tz,notify_email
+__export__.res_partner_currency_rate,Currency Rate,True,Contact,base.main_company,Individual,soporte@bias.com.mx,False,False,False,America/Monterrey,none
