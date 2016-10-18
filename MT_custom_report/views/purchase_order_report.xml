@@ -292,33 +292,35 @@
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <td/>
+                                        <td> </td>
                                         <td colspan="3">
                                             <spam style=" font-weight:bold;">Moneda: </spam>
-                                            <spam t-field="o.currency_id.name"/>
+                                            <spam t-field="o.currency_id.name"  />
                                         </td>
-                                        <td/>
-                                        <td class="text-right" colspan="3">
-                                            <spam style=" font-weight:bold;">Subtotal: </spam>(
-                                            <spam t-field="o.currency_id.name"/>
-                                            )</td>
+                                        <td> </td>
+                                        <td colspan="3" class="text-right">
+                                            <spam style=" font-weight:bold;">Subtotal: </spam>
+                                            (<spam t-field="o.currency_id.name"/>)
+                                        </td>
                                         <td class="text-right">
-                                            <span t-field="o.amount_untaxed" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;o.currency_id&quot;}"/>
+                                            <span t-field="o.amount_untaxed" 
+                                                t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;o.currency_id&quot;}"/>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td/>
+                                        <td> </td>
                                         <td colspan="3">
-                                            <spam style=" font-weight:bold;">Método de Pago: </spam>
-                                            <spam t-field="o.payment_method_id.name"/>
+                                            <spam style=" font-weight:bold;">Plazo de Pago: </spam>
+                                            <spam t-field="o.payment_term_id.name"  />
                                         </td>
-                                        <td/>
-                                        <td class="text-right" colspan="3">
-                                            <spam style=" font-weight:bold;">Impuestos: </spam>(
-                                            <spam t-field="o.currency_id.name"/>
-                                            )</td>
+                                        <td> </td>
+                                        <td colspan="3" class="text-right">
+                                            <spam style=" font-weight:bold;">Impuestos: </spam>
+                                            (<spam t-field="o.currency_id.name"/>)
+                                        </td>
                                         <td class="text-right">
-                                            <span t-field="o.amount_tax" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;o.currency_id&quot;}"/>
+                                            <span t-field="o.amount_tax" 
+                                                t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;o.currency_id&quot;}"/>
                                         </td>
                                     </tr>
                                     <tr>
