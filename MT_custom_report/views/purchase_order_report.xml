@@ -80,7 +80,13 @@
                                                 <br/>
                                             </div>
                                             <div class="col-xs-6 text-left" style="vertical-align: middle !important;">
+                                                <spam t-field="o.name"/>
+                                            </div>
+                                            <div class="col-xs-6 text-left" style="vertical-align: middle !important;">
                                                 <spam t-field="o.partner_ref"/>
+                                            </div>
+                                            <div class="col-xs-6 text-left" style="vertical-align: middle !important;">
+                                                <spam t-field="o.origin"/>
                                             </div>
                                         </div>
                                     </div>
@@ -116,6 +122,7 @@
                                                                 <spam style="font-size:11px; color:#FFFFFF !important; ">....</spam>
                                                                 <spam t-field="o.partner_id.street"/>
                                                                 <spam t-field="o.partner_id.l10n_mx_street3"/>
+                                                                <spam t-field="o.partner_id.l10n_mx_street4"/>
                                                                 <br/>
                                                             </div>
                                                             <div t-if="o.partner_id.street2">
@@ -152,6 +159,7 @@
                                                                 <spam style="font-size:11px; color:#FFFFFF !important; ">....</spam>
                                                                 <spam t-field="o.company_id.partner_id.street"/>
                                                                 <spam t-field="o.company_id.partner_id.l10n_mx_street3"/>
+                                                                <spam t-field="o.company_id.partner_id.l10n_mx_street4"/>
                                                                 <br/>
                                                             </div>
                                                             <div t-if="o.company_id.partner_id.street2">
@@ -165,7 +173,7 @@
                                                             </div>
                                                             <div>
                                                                 <spam style="font-size:11px; color:#FFFFFF !important; ">....</spam>
-                                                                <spam t-field="o.company_id.partner_id.city"/>, 
+                                                                <spam t-field="o.company_id.partner_id.city_id.name"/>, 
                                                                 
                                                                 <spam t-field="o.company_id.partner_id.state_id.name"/>
                                                                 , 
@@ -182,11 +190,6 @@
                                                             <spam style="font-weight:bold;">Tel: </spam>
                                                             <spam t-field="o.company_id.partner_id.phone"/>
                                                         </div>
-                                                        <div t-if="o.company_id.partner_id.fax">
-                                                            <i aria-hidden="true" class="fa fa-fax"/>
-                                                            <spam style=" font-weight:bold;">Fax: </spam>
-                                                            <spam t-field="o.company_id.partner_id.fax"/>
-                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -196,47 +199,89 @@
                                                 <div class="row">
                                                     <div class="col-xs-12" style="vertical-align: top !important;">
                                                         <t t-set="entrega" t-value="o.picking_type_id.warehouse_id.partner_id"/>
+                                                        <t t-set="dropship" t-value="o.dest_address_id"/>
                                                         <t t-if="entrega">
                                                             <spam>A nombre de: </spam>
                                                             <spam class="title_company" t-att-style="Address_Company" t-field="entrega.name"/>
                                                             <br/>
                                                             <address class="address">
-                                                                <div class="vat">
-                                                                    <i aria-hidden="true" class="fa fa-map-marker"/>
-                                                                    <spam style="font-weight:bold;">Dirección: </spam>
-                                                                </div>
-                                                                <div t-if="o.company_id.partner_id.street">
-                                                                    <spam style="font-size:11px; color:#FFFFFF !important; ">....</spam>
-                                                                    <spam t-field="entrega.street"/>
-                                                                    <spam t-field="entrega.l10n_mx_street3"/>
-                                                                    <br/>
-                                                                </div>
-                                                                <div t-if="entrega.street2">
-                                                                    <spam style="font-size:11px; color:#FFFFFF !important; ">....</spam>
-                                                                    <spam>Colonia:</spam>
-                                                                    <spam t-field="entrega.street2"/>
-                                                                </div>
-                                                                <div>
-                                                                    <spam style="font-size:11px; color:#FFFFFF !important; ">....</spam>
-                                                                    <spam>Ciudad:</spam>
-                                                                    <spam t-field="entrega.city"/>
-                                                                </div>
-                                                                <div>
-                                                                    <spam style="font-size:11px; color:#FFFFFF !important; ">....</spam>
-                                                                    <spam>Estado:</spam>
-                                                                    <spam t-field="entrega.state_id.name"/>, 
-                                                                    <spam t-field="entrega.country_id.code"/></div>
-                                                                    <div t-if="entrega.zip">
-                                                                    <spam style="font-size:11px; color:#FFFFFF !important; ">....</spam>
-                                                                    <spam>C.P: </spam>
-                                                                    <spam t-field="entrega.zip"/>
-                                                                </div>
-                                                                <div t-if="entrega.phone">
-                                                                <i aria-hidden="true" class="fa fa-phone-square"/>
-                                                                <spam style=" font-weight:bold;">Tel: </spam>
-                                                                <spam t-field="entrega.phone"/>
+                                                            <div class="vat">
+                                                                <i aria-hidden="true" class="fa fa-map-marker"/>
+                                                                <spam style="font-weight:bold;">Dirección: </spam>
                                                             </div>
-                                                            </address>
+                                                            <div t-if="entrega.street">
+                                                                <spam style="font-size:11px; color:#FFFFFF !important; ">....</spam>
+                                                                <spam t-field="entrega.street"/>
+                                                                <spam t-field="entrega.l10n_mx_street3"/>
+                                                                <spam t-field="entrega.l10n_mx_street4"/>
+                                                                <br/>
+                                                            </div>
+                                                            <div t-if="entrega.street2">
+                                                                <spam style="font-size:11px; color:#FFFFFF !important; ">....</spam>
+                                                                <spam t-field="entrega.street2"/>
+                                                            </div>
+                                                            <div t-if="entrega.zip">
+                                                                <spam style="font-size:11px; color:#FFFFFF !important; ">....</spam>
+                                                                <spam>C.P: </spam>
+                                                                <spam t-field="entrega.zip"/>
+                                                            </div>
+                                                            <div>
+                                                                <spam style="font-size:11px; color:#FFFFFF !important; ">....</spam>
+                                                                <spam t-field="entrega.city_id.name"/>,
+                                                                <spam t-field="entrega.state_id.name"/>,
+                                                                <spam t-field="entrega.country_id.code"/></div>
+                                                        </address>
+                                                        <div class="vat" t-if="entrega.vat">
+                                                            <i aria-hidden="true" class="fa fa-building"/>
+                                                            <spam style=" font-weight:bold;">RFC: </spam>
+                                                            <spam t-field="entrega.vat"/>
+                                                        </div>
+                                                        <div t-if="entrega.phone">
+                                                            <i aria-hidden="true" class="fa fa-phone-square"/>
+                                                            <spam style="font-weight:bold;">Tel: </spam>
+                                                            <spam t-field="entrega.phone"/>
+                                                        </div>
+                                                        </t>
+                                                        <!-- If DropShip -->
+                                                        <t t-if="dropship">
+                                                            <spam t-field="dropship.name" class="title_company" t-att-style="Address_Company"/><br/>
+                                                            <address class="address">
+                                                            <div class="vat">
+                                                                <i aria-hidden="true" class="fa fa-map-marker"/>
+                                                                <spam style="font-weight:bold;">Dirección: </spam>
+                                                            </div>
+                                                            <div t-if="dropship.street">
+                                                                <spam style="font-size:11px; color:#FFFFFF !important; ">....</spam>
+                                                                <spam t-field="dropship.street"/>
+                                                                <spam t-field="dropship.l10n_mx_street3"/>
+                                                                <spam t-field="dropship.l10n_mx_street4"/>
+                                                                <br/>
+                                                            </div>
+                                                            <div t-if="dropship.street2">
+                                                                <spam style="font-size:11px; color:#FFFFFF !important; ">....</spam>
+                                                                <spam t-field="dropship.street2"/>
+                                                            </div>
+                                                            <div t-if="dropship.zip">
+                                                                <spam style="font-size:11px; color:#FFFFFF !important; ">....</spam>
+                                                                <spam>C.P: </spam>
+                                                                <spam t-field="dropship.zip"/>
+                                                            </div>
+                                                            <div>
+                                                                <spam style="font-size:11px; color:#FFFFFF !important; ">....</spam>
+                                                                <spam t-field="dropship.city_id.name"/>,
+                                                                <spam t-field="dropship.state_id.name"/>,
+                                                                <spam t-field="dropship.country_id.code"/></div>
+                                                        </address>
+                                                       <div class="vat" t-if="dropship.vat">
+                                                            <i aria-hidden="true" class="fa fa-building"/>
+                                                            <spam style=" font-weight:bold;">RFC: </spam>
+                                                            <spam t-field="dropship.vat"/>
+                                                        </div>
+                                                        <div t-if="dropship.phone">
+                                                            <i aria-hidden="true" class="fa fa-phone-square"/>
+                                                            <spam style="font-weight:bold;">Tel: </spam>
+                                                            <spam t-field="dropship.phone"/>
+                                                        </div>
                                                         </t>
                                                     </div>
                                                 </div>
@@ -349,7 +394,7 @@
                                             <td colspan="7" class="text-center">
                                                 <spam style=" font-weight:bold;">Leyenda: </spam>
                                                 <p class="text-center">Todas las Facturas generadas a <b>Mexicana de Telecomunicaciones S.A. de C.V.</b>
-                                                deberán incluir Número de Orden de Compra y Método de Pago.</p>
+                                                deberán incluir Número de Orden de Compra y Método de Pago - 03 Transferencia Electrónica.</p>
                                             </td>
                                         <td/>
                                     </tr>

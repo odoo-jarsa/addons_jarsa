@@ -21,7 +21,6 @@ class ReportPurchaseOrderCustom(models.AbstractModel):
                 purchase.picking_type_id.warehouse_id and
                 purchase.picking_type_id.warehouse_id.partner_id or
                 None)
-        print 'entrega', entrega
         docargs = {
             'doc_ids': self._ids,
             'doc_model': report.model,
