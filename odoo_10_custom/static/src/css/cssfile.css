@@ -1,0 +1,147 @@
+@keyframes menuitem{
+    from{ transform: translate(0px,0px); }
+    33%{ transform: translate(3px,0px); }
+    66%{ transform: translate(-3px,0px); }
+    to{ transform: translate(0px,0px); }
+}
+@keyframes menuitemicons{
+    from{ transform: scale(1, 1); }
+    33%{ transform: scale(0.9, 0.9); }
+    66%{ transform: scale(1.1, 1.1); }
+    to{ transform: scale(1, 1); }
+}
+nav.navbar div.container-fluid{
+    background: #cc7068;
+    background: -moz-linear-gradient(-45deg, #cc7068 0%, #c94f49 17%, #a42e2c 51%, #8f2421 51%, #a81c21 59%, #ba2328 71%, #8f2124 84%, #671e15 100%);
+    background: -webkit-linear-gradient(-45deg, #cc7068 0%,#c94f49 17%,#a42e2c 51%,#8f2421 51%,#a81c21 59%,#ba2328 71%,#8f2124 84%,#671e15 100%);
+    background: linear-gradient(135deg, #cc7068 0%,#c94f49 17%,#a42e2c 51%,#8f2421 51%,#a81c21 59%,#ba2328 71%,#8f2124 84%,#671e15 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc7068', endColorstr='#671e15',GradientType=1 );
+}
+.o_list_view tfoot{
+    background: #bb524d;
+}
+nav.navbar-inverse{   
+    border-color: #904b4b;
+}
+nav div.navbar-header > a.navbar-brand.o_menu_toggle:hover,
+nav div#o_navbar_collapse > ul.nav.navbar-nav.o_menu_sections > li > a:hover,
+nav div#o_navbar_collapse > ul.nav.navbar-nav.o_menu_sections > li > a:focus,
+nav div#o_navbar_collapse > ul.nav.navbar-nav.navbar-right.oe_systray > li > a:hover,
+nav div#o_navbar_collapse > ul.nav.navbar-nav.navbar-right.oe_systray > li > a:focus,
+.navbar-inverse .navbar-nav > .open > a,
+.navbar-inverse .navbar-nav > .open > a:hover,
+.navbar-inverse .navbar-nav > .open > a:focus{
+    background-color: #d26d6d;
+}
+nav div.navbar-header > a.navbar-brand.o_menu_toggle:hover,
+nav div#o_navbar_collapse > ul.nav.navbar-nav.o_menu_sections > li > a:hover{
+    animation-name: menuitem;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    position: relative;
+}
+body > div.o_application_switcher{
+    background: url(/odoo_10_custom/static/src/img/image3.png) no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    font-size: 15px;
+}
+div.o_application_switcher div.o_application_switcher_footer img{
+    content: url(/odoo_10_custom/static/src/img/jarsa.png);
+    width: 70px;
+}
+.o_application_switcher .o_apps .o_app .o_caption{
+    color: #6b6b6b;
+}
+.o_application_switcher .o_apps .o_app .o_app_icon{
+    border-radius: 3px;
+    -webkit-box-shadow: -4px 4px 6px -3px rgba(0, 0, 0, 0.29);
+    -moz-box-shadow: -4px 4px 6px -3px rgba(0, 0, 0, 0.29);
+    box-shadow: -4px 4px 6px -3px rgba(0, 0, 0, 0.29);
+}
+.o_application_switcher .o_apps .o_app .o_app_icon:hover{
+    animation-name: menuitemicons;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    position: relative;
+}
+.o_searchview .o_searchview_facet .o_searchview_facet_label,
+.label-primary, .btn-primary{
+    background-color: #4c4643;
+}
+.btn-primary:hover{
+    background-color: #56524f; 
+}
+.btn-default, .btn-link{
+    color: #4c4643;
+}
+.btn-default:hover{
+    color: #949494;
+}
+.btn-link:hover{
+    color: #bb524d;
+}
+.btn{
+    border-radius: 3px;
+}
+.o_form_view .oe_link,
+.o_form_view.o_form_readonly .o_form_uri:first-line,
+.o_control_panel .breadcrumb > li > a{
+    color: #bb524d;
+}
+.o_form_view.o_form_readonly .o_form_uri:hover:first-line,
+.o_control_panel .breadcrumb > li > a:hover{
+    color: #843c38;
+}
+.o_form_view .o_form_statusbar > .o_statusbar_status > .o_arrow_button.btn-primary.disabled{
+    background-color: #f19e97;
+    margin: 2.5px 0;
+}
+.o_form_view .o_form_statusbar > .o_statusbar_status > .o_arrow_button.disabled{
+    margin: 2.5px 0;
+}
+.o_form_view .o_form_statusbar > .o_statusbar_status > .o_arrow_button.btn-primary.disabled:after,
+.o_form_view .o_form_statusbar > .o_statusbar_status > .o_arrow_button.btn-primary.disabled:before{
+    border-left-color: #f19e97;
+}
+/*
+div.table-responsive table.o_account_reports_table{
+    font-size:100px;
+}
+.navbar-inverse .navbar-nav > li > a:hover,
+.navbar-inverse .navbar-nav > li > a:focus,
+body > nav > div > div.navbar-header > a:hover,
+.navbar-inverse .navbar-nav > .open > a,
+.navbar-inverse .navbar-nav > .open > a:hover,
+.navbar-inverse .navbar-nav > .open > a:focus,
+.o_web_client .navbar .o_menu_toggle:hover,
+.o_searchview .o_searchview_facet .o_searchview_facet_label,
+.label-primary[href]:hover,
+.label-primary[href]:focus,
+
+
+
+
+.o_form_view .o_notebook > ul.nav-tabs > li.active > a,
+.o_form_view .o_notebook > ul.nav-tabs > li.active > a:hover, 
+.o_form_view .o_notebook > ul.nav-tabs > li.active > a:focus,
+.o_form_view .o_notebook > ul.nav-tabs > li.active > a:active{
+    color: #B40404;
+    font-weight: 500;
+}
+.o_form_view .o_notebook > ul.nav-tabs > li.active > a {
+    border-bottom: 1px solid #B40404;
+}
+
+.o_form_view .oe_button_box .btn.oe_stat_button > .o_stat_info .o_stat_value {
+    display: block;
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: top;
+    font-weight: 700;
+    color: #B40404;
+}*/
