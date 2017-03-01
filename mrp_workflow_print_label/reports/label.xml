@@ -107,6 +107,12 @@
                                 <td colspan="2"><span t-field="doc.total_pieces"/></td>
                             </tr>
                             <tr>
+                                <th>Quantity: </th>
+                                <td colspan="2">
+                                    <span t-esc="doc.container_qty"/>
+                                </td>
+                            </tr>
+                            <tr>
                                 <th>Auditor/Inspector: </th>
                                 <td colspan="2">
                                     <span t-esc="user.name"/>
