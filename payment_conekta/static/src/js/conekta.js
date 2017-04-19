@@ -19,6 +19,13 @@ $(document).ready(function() {
             }
         });
 
+        $('#exp_date').on('keyup', function(){
+            var element = $("#exp_date").val();
+            var date = element.split(' / ');
+            $("#exp_month").val(date[0]);
+            $("#exp_year").val(date[1]);
+        });
+
         $payment.on("click", 'button[name="conekta"]', function (ev) {
             ev.preventDefault();
             ev.stopPropagation();
@@ -36,7 +43,8 @@ $(document).ready(function() {
         var conektaSuccessResponseHandler = function(token) {
             var $form = $("#card-form");
             $form.append($("<input type='hidden' name='token_id'>").val(token.id));
-            ajax.jsonRpc('/payment/conekta/charge', 'call', {'token': token.id}).then(function(response) {
+            var month = $('#month-inte').val();
+            ajax.jsonRpc('/payment/conekta/charge', 'call', {'token': token.id, 'month': month}).then(function(response) {
                 if (response === true) {
                     $form.get(0).submit();
                 } else {
@@ -58,12 +66,12 @@ $(document).ready(function() {
 
             formSelectors: {
                 numberInput: '#conekta-card-number',
-                expiryInput: '#exp_month, #exp_year',
+                expiryInput: '#exp_date',
                 cvcInput: '#cvc',
                 nameInput: '#cardholder_name'
             },
         });
-
+        
         $('#conekta-card-number').on('keyup', function(){
             var card_number = this;
             var validation = Conekta.card.validateNumber(card_number.value);
@@ -93,10 +101,10 @@ $(document).ready(function() {
             var exp_year = $("#exp_year");
             var validation = Conekta.card.validateExpirationDate(exp_month.val(), exp_year.val());
             if (validation === true) {
-                $("#expiration-div").removeClass("has-error").addClass("has-success");
+                $("#expiration-date").removeClass("has-error").addClass("has-success");
                 $("#card-form").find("button").prop("disabled", false);
             } else {
-                $("#expiration-div").removeClass("has-success").addClass("has-error");
+                $("#expiration-date").removeClass("has-success").addClass("has-error");
                 $("#card-form").find("button").prop("disabled", true);
             }
         });

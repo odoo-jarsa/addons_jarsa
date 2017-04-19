@@ -33,6 +33,8 @@ class ConektaController(http.Controller):
         params['reference_id'] = so.name
         if acquirer == 'conekta':
             params['card'] = request.session['conekta_token']
+            if request.session['month'] in ['3', '6', '9', '12']:
+                params['monthly_installments'] = request.session['month']
         if acquirer == 'conekta_oxxo':
             params['cash'] = {'type': 'oxxo'}
             # TODO: ADD expires_at
@@ -81,7 +83,8 @@ class ConektaController(http.Controller):
 
     @http.route('/payment/conekta/charge', type='json',
                 auth='public', website=True)
-    def charge_create(self, token):
+    def charge_create(self, token, month):
+        request.session['month'] = month
         request.session['conekta_token'] = token
         payment_acquirer = request.env['payment.acquirer']
         conekta_acq = payment_acquirer.sudo().search(

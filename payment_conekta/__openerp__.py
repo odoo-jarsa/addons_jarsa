@@ -17,6 +17,7 @@
     "depends": [
         "payment",
         "website_sale",
+        "sale",
     ],
     "data": [
         "security/security.xml",
@@ -26,6 +27,8 @@
         "views/assets_frontend.xml",
         "wizards/conekta_refund_wizard_view.xml",
         "views/sale_order_view.xml",
+        "data/cancel_action_data.xml",
+        "data/partially_action_data.xml",
     ],
     "demo": [
         "demo/payment_acquirer_demo.xml",
