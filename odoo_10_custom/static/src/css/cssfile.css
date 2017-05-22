@@ -10,7 +10,7 @@
     66%{ transform: scale(1.1, 1.1); }
     to{ transform: scale(1, 1); }
 }
-nav.navbar div.container-fluid{
+.navbar-inverse{
     background: #cc7068;
     background: -moz-linear-gradient(-45deg, #cc7068 0%, #c94f49 17%, #a42e2c 51%, #8f2421 51%, #a81c21 59%, #ba2328 71%, #8f2124 84%, #671e15 100%);
     background: -webkit-linear-gradient(-45deg, #cc7068 0%,#c94f49 17%,#a42e2c 51%,#8f2421 51%,#a81c21 59%,#ba2328 71%,#8f2124 84%,#671e15 100%);
