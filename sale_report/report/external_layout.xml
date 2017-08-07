@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<template id="external_layout_header_inherit" inherit_id="report.external_layout_header">
+		<xpath expr="//div[@class='header']" position="replace">
+			<div class="header">
+				<div class="row">
+					<div class="col-xs-6">
+						<img style="max-height:104px; max-width:220px; margin-top:10px;" t-att-src="'data:image/png;base64,%s' % doc.company_id.logo" t-if="doc.company_id.logo"/>
+					</div>
+					<div class="col-xs-6 text-right" style="margin-top:40px;" t-field="doc.company_id.rml_header1"/>
+				</div>
+				<div class="row zero_min_height">
+					<div class="col-xs-12">
+						<div style="border-bottom: 1px solid black;"/>
+					</div>
+				</div>
+			<br/>
+			<br/>
+			</div>
+		</xpath>
+	</template>
+	<template id="external_layout_footer_inherit" inherit_id="report.external_layout_footer">
+		<xpath expr="//div[@class='footer']" position="replace">
+			<div class="footer">
+				<div class="text-center" style="border-top: 1px solid black;">
+					<ul class="list-inline" t-if="not company.custom_footer">
+						<t t-set="company" t-value="company.sudo()"/>
+						<li t-if="company.phone">
+							<span t-field="company.phone"/></li>
+						<li t-if="company.fax and company.phone">&amp;bull;</li>
+						<li t-if="company.fax"> 
+							<span t-field="company.fax"/></li>
+						<li t-if="company.email and company.fax or company.email and company.phone">&amp;bull;</li>
+						<li t-if="company.email">
+							<span t-field="company.email"/></li>
+						<li t-if="company.website and company.email or company.website and company.fax or company.website and company.phone">&amp;bull;</li>
+						<li t-if="company.website">
+							<span t-field="company.website"/></li>
+					</ul>
+					<ul class="list-inline" name="financial_infos" t-if="not company.custom_footer">
+						<li t-if="company.vat">
+							<span t-field="company.vat"/></li>
+					</ul>
+					<t t-if="company.custom_footer">
+						<span t-raw="company.rml_footer"/>
+					</t>
+				</div>
+				<div class="text-right">
+					<ul class="list-inline">
+						<li>Page:</li>
+						<li>
+							<span class="page"/>
+						</li>
+						<li>/</li>
+						<li>
+							<span class="topage"/>
+						</li>
+					</ul>
+				</div>	
+			</div>
+		</xpath>
+	</template>
+</odoo>
