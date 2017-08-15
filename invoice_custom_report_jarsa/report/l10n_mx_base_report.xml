@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Template external layout-->
+        <template id="l10n_mx_base_header_jarsa" inherit_id="l10n_mx_base.external_layout_header">
+            <xpath expr="//div[@class='header']" position="replace">
+                <div class="header">
+                    <t t-set="emitter" t-value="xml_data.Emisor"/>
+                    <t t-set="fiscal_add" t-value="get_fiscal_address(emitter, company)"/>
+                    <div class="row" style="padding-top:10px;">
+                        <div class="col-xs-4">
+                            <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo" style="max-height: 65; max-width: auto; margin-bottom:2px;margin-top:10px;"/>
+                        </div>
+                        <div class="col-xs-4"/>
+                        <div class="col-xs-4" style="text-align:right; font-size:13px;margin-bottom:10px;">
+                            <t t-set="emitter" t-value="xml_data.Emisor"/>
+                            <t t-set="fiscal_add" t-value="get_fiscal_address(emitter, company)"/>
+                            <strong><span style="font-size: 16px;" t-esc="emitter.get('nombre', emitter.get('Nombre', ''))"/></strong><br/>
+                            <t t-if="fiscal_add.get('calle', fiscal_add.get('emiter_street', 'NA')) != 'NA'"> <span t-esc="fiscal_add.get('calle', fiscal_add.get('emiter_street', ''))"/> </t>
+                            <t t-if="fiscal_add.get('noExterior', fiscal_add.get('emitter_exterior_no', 'NA')) != 'NA'"> <span t-esc="fiscal_add.get('noExterior', fiscal_add.get('emitter_exterior_no', ''))"/> </t>
+                            <t t-if="fiscal_add.get('noInterior', fiscal_add.get('emitter_interior_no', 'NA')) != 'NA'"> <span t-esc="fiscal_add.get('noInterior',  fiscal_add.get('emitter_interior_no', ''))"/> </t><br/>
+                            <t t-if="fiscal_add.get('colonia', fiscal_add.get('emitter_colony', 'NA')) != 'NA'"> <span t-esc="'Col. %s,' %(fiscal_add.get('colonia', fiscal_add.get('emitter_colony', '')))"/> </t><br/>
+                            <t t-if="fiscal_add.get('municipio', fiscal_add.get('emitter_municipality', 'NA')) != 'NA'"> <span t-esc="'%s, '%(fiscal_add.get('municipio', fiscal_add.get('emitter_municipality', '')))"/>  </t>
+                            <t t-if="fiscal_add.get('estado', fiscal_add.get('emitter_state', 'NA')) != 'NA'"> <span t-esc="'%s, '%(fiscal_add.get('estado', fiscal_add.get('emitter_state', '')))"/> </t>
+                            <span>ZIP. </span><t t-if="fiscal_add.get('codigoPostal',  fiscal_add.get('emitter_zip', 'NA')) != 'NA'"> <span t-esc="fiscal_add.get('codigoPostal', fiscal_add.get('emitter_zip', ''))"/></t>
+                            <br/><strong><span>VAT. </span><span t-esc="emitter.get('rfc', emitter.get('Rfc', ''))"/></strong>
+                        </div>                        
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-5" style="padding-bottom:10px;">
+                            <div style="font-weight:bold;text-align:center;font-size:15px; background-color: #A00014;border-top-left-radius: 3px;border-top-right-radius: 3px;color:white; padding-top: 3px;padding-top: 3px;">
+                                <strong t-if="xml_data.get('tipoDeComprobante', '') == 'ingreso'"><span>INVOICE</span></strong>
+                                <strong t-if="xml_data.get('tipoDeComprobante', '') == 'egreso'"><span>CREDIT NOTE</span></strong>
+                            </div>
+                            <div style="text-align:left;font-size:13px;border-style: solid; border-color: #A00014; border-width: 0px 1px 1px 1px; border-bottom-left-radius:3px; border-bottom-right-radius:3px; padding-top: 6px;padding-left: 10px;">
+                                <t t-set="receiver" t-value="xml_data.Receptor"/>
+                                <t t-set="address" t-value="receiver.Domicilio"/>
+                                <strong>Receiver:</strong>
+                                <br/>
+                                <span t-esc="receiver.get('nombre', '')"/>
+                                <br/>
+                                <i aria-hidden="true" class="fa fa-building"/>
+                                <strong>Vat:</strong>
+                                <br/>
+                                <span t-esc="receiver.get('rfc', '')"/>
+                                <br/>
+                                <i aria-hidden="true" class="fa fa-map-marker"/>
+                                <strong>Address:</strong>
+                                <br/>
+                                <t t-if="address.get('calle', 'NA') != 'NA'"> <span t-esc="address.get('calle', '')"/> </t>
+                                <t t-if="address.get('noExterior', 'NA') != 'NA'"> <span t-esc="address.get('noExterior', '')"/> </t>
+                                <t t-if="address.get('noInterior', 'NA') != 'NA'"> <span t-esc="address.get('noInterior', '')"/> </t>
+                                <t t-if="address.get('colonia', 'NA') != 'NA'"> <span t-esc="address.get('colonia', '')"/> </t>
+                                <t t-if="address.get('localidad', 'NA') != 'NA'"> <span t-esc="address.get('localidad', '')"/> </t>
+                                <t t-if="address.get('municipio', 'NA') != 'NA'"> <span t-esc="address.get('municipio', '')"/> </t>
+                                <t t-if="address.get('estado', 'NA') != 'NA'"> <span t-esc="address.get('estado', '')"/> </t>
+                                <t t-if="address.get('codigoPostal', NA) != 'NA'"> <span t-esc="address.get('codigoPostal', '')"/></t>
+                                <t t-if="address.get('pais', 'NA') != 'NA'"> <span t-esc="address.get('pais', '')"/> </t><br/>
+                            </div>
+                        </div>
+                        <div class="col-xs-7">
+                            <div style="font-weight:bold;text-align:center;font-size:15px; background-color: #A00014;border-top-left-radius: 
+                                3px;border-top-right-radius: 3px;color:white; padding-top: 3px;padding-top: 3px;">
+                                <span>SERIE / FOLIO:</span>
+                                <t t-if="xml_data.get('folio', '')">
+                                    <strong t-esc="xml_data.get('folio', '')"/>
+                                </t>
+                                <t t-if="not xml_data.get('folio', '')">
+                                    <strong>WITHOUT FOLIO OR INVALID STATUS</strong>
+                                </t>
+                            </div>
+                            <div style="text-align:left;font-size:13px;border-style: solid; border-color: #A00014; border-width: 0px 1px 1px 1px; border-bottom-left-radius:3px; border-bottom-right-radius:3px; padding-top: 6px;padding-bottom: 4px; padding-left: 10px;">
+                                <strong><span>Expedition Place:</span></strong>
+                                <span t-esc="xml_data.get('LugarExpedicion', '')"/><br/>
+                                <strong><span>Fiscal Folio:</span></strong>
+                                <span t-esc="invoice_obj.l10n_mx_edi_get_tfd_etree(xml_data).get('UUID', '') or 'No identificado'"/><br/>
+                                <strong><span>Issue Date:</span></strong>
+                                <span t-esc="datetime.strptime(xml_data.get('fecha').encode('ascii','replace'), '%Y-%m-%dT%H:%M:%S').strftime('%d de %B de %Y %H:%M:%S')"/><br/>
+                                <strong><span>Certificate Number:</span></strong>
+                                <span t-esc="xml_data.get('noCertificado', 'No identificado')"/><br/>
+                                <strong>Fiscal position:</strong><span t-esc="emitter.RegimenFiscal.get('Regimen', '')"/><br/>
+                                <strong><span>Account Number: </span></strong>
+                                <span t-esc="xml_data.get('NumCtaPago', 'NA')"/><br/>
+                                <strong>Payment terms:</strong>
+                                <span t-esc="o.l10n_mx_payment_terms"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </template>
+        <!-- Template page-->
+        <template id="l10n_mx_base_page_jarsa" inherit_id="l10n_mx_base.electronic_invoice_report_document">
+            <xpath expr="//t[2]/t[@t-call='l10n_mx_base.external_layout']/div[@class='page']" position="replace">
+                <div class="page" style="padding-top: 135px;">
+                    <br/>
+                    <style>
+                        table {
+                            border-collapse: collapse !important; 
+                        }
+
+                        td, th, .borders {
+                            border: 0.1em solid gray !important;
+                        }
+                        .noborder{
+                            border: none !important;
+                        }
+                        .colored{
+                            background-color: #A00014 !important;
+                            color:white !important;
+                        }
+                    </style>
+                    <div class="row" id="concepts">
+                        <div class="col-xs-12">
+                            <table class="table table-condensed" style="font-size:10px;">
+                                <tr>
+                                    <td><strong>Salesman:</strong></td>
+                                    <td>
+                                      <span t-field="o.user_id.name"/>
+                                    </td>
+                                    <td><strong>Origin:</strong></td>
+                                    <td><span t-if="not o.name">NA</span>
+                                        <span t-if="o.name" t-field="o.origin"/></td>
+                                    <td><strong>Reference:</strong></td>
+                                    <td>
+                                        <span t-if="not o.name">NA</span>
+                                        <span t-if="o.name" t-field="o.name"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong><span>Payment Method: </span></strong></td>
+                                    <td><span t-esc="xml_data.get('metodoDePago', xml_data.get('FormaPago', 'NA'))"/></td>  
+                                    <td><strong>Currency:</strong></td>
+                                    <td><span t-field="o.currency_id.name"/></td>
+                                    <td><strong>Payment terms:</strong></td>
+                                    <td><span t-field="o.payment_term_id"/></td>
+                                </tr>
+                            </table>
+                            <table class="table table-condensed" style="font-size:10px;">
+                                <tr class="text-center">
+                                    <th style="border-bottom:1pt solid black;"><span>R</span></th>
+                                    <th style="border-bottom:1pt solid black;"><span>DESCRIPTION</span></th>
+                                    <th style="border-bottom:1pt solid black;" class="text-center"><span>QUANTITY</span></th>
+                                    <th style="border-bottom:1pt solid black;" class="text-center"><span>UoM</span></th>
+                                    <th style="border-bottom:1pt solid black; text-align: right"><span>UNIT PRICE</span></th>
+                                    <th style="border-bottom:1pt solid black; text-align: right"><span>TOTAL</span></th>
+                                </tr>
+                                <t t-set="row_count" t-value="1"/>
+                                <t t-set="concepts" t-value="xml_data.Conceptos.get('Concepto', ())"/>
+                                <t t-foreach="[concept for concept in xml_data.Conceptos.Concepto]" t-as="concept">
+                                    <tr class="text-center">
+                                        <td class="text-center"><span t-esc="row_count"></span></td>
+                                        <td class="text-left">
+                                            <span t-esc="concept.get('descripcion', concept.get('Descripcion', ''))"/>
+                                        </td>
+                                        <td class="text-center"><span t-esc="concept.get('cantidad', concept.get('Cantidad', '0.0'))"></span></td>
+                                        <td  class="text-center"><span t-esc="concept.get('unidad', concept.get('Unidad', '0.0'))"></span></td>
+                                        <td class="text-right"><span t-esc="float(concept.get('valorUnitario', concept.get('ValorUnitario', '0.0')))" t-options='{"widget": "monetary", "display_currency": o.currency_id}'></span></td>
+                                        <td class="text-right"><span t-esc="float(concept.get('importe', concept.get('Importe', '0.0')))" t-options='{"widget": "monetary", "display_currency": o.currency_id}'></span></td>
+                                    </tr>
+                                    <t t-set="row_count" t-value="row_count+1"/>
+                                </t>
+                                <tr id="totals">
+                                    <t t-set="v" t-value="5"/>
+                                    <t t-set="desc_amount" t-value="xml_data.get('descuento', xml_data.get('Descuento', False))"/>
+                                    <t t-if="xml_data.Impuestos.find('{http://www.sat.gob.mx/cfd/3}Retenciones') and xml_data.Impuestos.Retenciones.find('{http://www.sat.gob.mx/cfd/3}Retencion') is not None">
+                                        <t t-set="v" t-value="v+1"/>
+                                    </t>
+                                    <t t-if="desc_amount and desc_amount != '0.0'">
+                                        <t t-set="v" t-value="v+1"/>
+                                    </t>                                    
+                                    <td class="text-center" colspan="4" t-att-rowspan="v">
+                                        <span>THE PAYMENT OF THIS INVOICE IS </span><span t-esc="xml_data.get('formaDePago', xml_data.get('MetodoPago', '')).upper()"/>, <br/>
+                                        <span>PLACE OF EXPEDITION </span><span t-esc="xml_data.get('LugarExpedicion', '').upper()"/>
+                                        <span>THIS IS A PRINTED REPRESENTATION OF A CFDI</span>
+                                    </td>
+                                    <td class="text-right colored">
+                                        <strong><span>Sub Total: </span></strong>
+                                    </td>
+                                    <td class="text-right" >
+                                        <span t-esc="float(xml_data.get('subTotal', xml_data.get('SubTotal', '0.0')))" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <t t-if="desc_amount and desc_amount != '0.0'">
+                                        <td class="text-right colored"><strong><span>Discount: </span></strong></td>
+                                        <td class="text-right"><span t-esc="float(desc_amount)" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/></td>
+                                    </t>
+                                </tr>
+                                <tr>
+                                    <t t-if="xml_data.Impuestos.find('{http://www.sat.gob.mx/cfd/3}Traslados') and xml_data.Impuestos.Traslados.find('{http://www.sat.gob.mx/cfd/3}Traslado') is not None">
+                                        <t t-set="taxes" t-value="[tax for tax in xml_data.Impuestos.Traslados.Traslado]"/>
+                                        <t t-foreach="taxes" t-as="tax">
+                                        <t t-set="tax_amount" t-value="tax.get('importe', tax.get('Importe', False))"/>
+                                            <t t-if="tax_amount">
+                                                <t t-set="tax_name" t-value="tax.get('impuesto', tax.get('Impuesto', ''))"/>
+                                                <t t-set="tasa" t-value="tax.get('tasa', tax.get('TasaOCuota', ''))"/>
+                                                <t t-set="text" t-value="tax_name+' ('+tasa+') % :'"/>
+                                                <td class="text-right colored"><strong><span t-esc="text or '0.0'"/></strong></td>
+                                                <t t-set="importe" t-value="tax.get('importe', tax.get('Importe', 0.0))"/>
+                                                <td class="text-right"><span t-esc="float(importe)" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/></td>
+                                            </t>
+                                        </t>
+                                    </t>
+                                </tr>
+                                <tr>
+                                    <t t-if="xml_data.Impuestos.find('{http://www.sat.gob.mx/cfd/3}Retenciones') and xml_data.Impuestos.Retenciones.find('{http://www.sat.gob.mx/cfd/3}Retencion') is not None">
+                                        <t t-set="taxes" t-value="[ret for ret in xml_data.Impuestos.Retenciones.Retencion]"/>
+                                        <t t-foreach="taxes" t-as="ret">
+                                            <t t-set="ret_amount" t-value="ret.get('importe', ret.get('Importe', False))"/>
+                                            <t t-if="ret_amount">
+                                                <t t-set="ret_name" t-value="ret.get('impuesto', ret.get('Impuesto', ''))"/>
+                                                <td class="text-right colored"><strong><span style="padding-right:20px;">Ret.</span></strong><span t-esc="('%s' % (ret_name or '' ))"/></td>
+                                                <td class="text-right"><span t-esc="float(ret_amount or '0.0')" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/></td>
+                                            </t>
+                                        </t>
+                                    </t>
+                                </tr>
+                                <tr>
+                                    <td class="text-right colored"><strong><span>Total:</span></strong></td>
+                                    <td class="text-right"><span t-esc="float(xml_data.get('total', xml_data.get('Total', '0.0')))" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/></td>
+                                </tr>
+                            </table>
+                            <div class="row" t-if="o.comment">
+                                <div class="col-xs-12">
+                                    <div style="text-align:center;font-size:11px;border-style: solid; border-color: gray; border-width: 1px 1px 1px 1px; padding-top: 6px;padding-bottom: 6px;"><b><span>Notes: </span></b><span t-raw="o.comment"/></div>
+                                </div>
+                            </div>
+                            <br/>
+                            <div class="row" id="amountwithletters">
+                                <div class="col-xs-12">
+                                    <div style="font-weight:bold;text-align:center;font-size:12px; background-color: #A00014;border-top-left-radius: 3px;border-top-right-radius: 3px;color:white; padding-top: 3px;padding-top: 3px;">
+                                        <span>Total amount with letters</span>
+                                    </div>
+                                    <div style="text-align:center;font-size:11px;border-style: solid; border-color: #A00014; border-width: 0px 1px 1px 1px; border-bottom-left-radius:3px; border-bottom-right-radius:3px; padding-top: 6px;">
+                                        <span>SON </span><span t-esc="amount_to_text(xml_data.get('total', xml_data.get('Total')), o.currency_id.name, o.partner_id.lang)"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><br/>
+                    <div id='complement'>
+                        <div class='row'>
+                            <div class="col-xs-3" style="float:left; padding-top: 0.3em; padding-bottom: 0.3em;">
+                                <t t-set="img" t-value="create_qrcode(xml_data)"/>
+                                <img t-if="img" t-att-src="'data:image/png;base64,%s' % img" style="max-height: 180; max-width: 180;"/>
+                            </div>
+                            <div class="col-xs-9" style="font-size:8px">
+                                <t t-set="tfd" t-value="o.l10n_mx_edi_get_tfd_etree(xml_data)"/>
+                                <div class="text-center" style="padding-top: 0.3em; padding-bottom: 0.3em;background-color: #848484;color: #ffffff;">
+                                    <strong><span>Digital stamp of the emitter</span></strong>
+                                </div>
+                                <div style="padding-top: 0.3em; padding-bottom: 0.3em;">
+                                    <span t-esc="split_string(xml_data.get('sello', xml_data.get('Sello', '')))"/>
+                                </div>
+                                <div class="text-center" style="padding-top: 0.3em; padding-bottom: 0.3em;background-color: #848484;color: #ffffff;">
+                                    <strong><span>Digital stamp SAT</span></strong>
+                                </div>
+                                <div style="padding-top: 0.3em; padding-bottom: 0.3em;">
+                                    <span t-esc="split_string(tfd.get('selloSAT', tfd.get('SelloSAT', '')))"/>
+                                </div>
+                                <div class="text-center" style="padding-top: 0.3em; padding-bottom: 0.3em;background-color: #848484;color: #ffffff;">
+                                    <strong><span>Original chain complement of digital certification SAT</span></strong>
+                                </div>
+                                <div style="padding-top: 0.3em; padding-bottom: 0.3em;">
+                                    <span t-esc="split_string(o.cfdi_original_string)"/>
+                                </div>
+                                <div class="text-center" style="padding-top: 0.3em; padding-bottom: 0.3em;background-color: #848484;color: #ffffff;">
+                                    <span t-esc="''"/>
+                                </div>
+                                <div style="padding-top: 0.3em; padding-bottom: 0.3em;">
+                                    <span>Emitter:</span><span t-esc="' %s |' % (xml_data.Emisor.get('nombre', xml_data.Emisor.get('Nombre', '')))"/>
+                                    <span>Serial number of emitter certificate:</span><span t-esc="'%s |' % xml_data.get('noCertificado', xml_data.get('NoCertificado', 'No identificado'))"/>
+                                    <span>Serial number of SAT certificate:</span><span t-esc="'%s |' % (tfd.get('noCertificadoSAT',tfd.get('NoCertificadoSAT', '')) or 'No identificado')"/>
+                                    <span>Fiscal folio:</span><span t-esc="'%s |' % (tfd.get('UUID', '') or 'No identificado')"/>
+                                    <span>Certification date and time:</span><span t-esc="'%s' % datetime.strptime(tfd.get('FechaTimbrado', '').encode('ascii','replace'), '%Y-%m-%dT%H:%M:%S').strftime('%d/%m/%Y %H:%M:%S') or 'No identificado'"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </template>
+        <!-- Template footer-->
+        <template id="l10n_mx_base_footer_jarsa" inherit_id="l10n_mx_base.external_layout_footer">
+            <xpath expr="//div[@class='footer']" position="replace">
+                <div class="footer">
+                    <div align="right">
+                        <ul class="list-inline hidden-md hidden-lg hidden-sm">
+                            <li>Page:</li>
+                            <li><span class="page"/></li>
+                            <li>/</li>
+                            <li><span class="topage"/></li>
+                        </ul>
+                    </div>
+                </div>
+            </xpath>
+        </template>
+    </data>
+</odoo>

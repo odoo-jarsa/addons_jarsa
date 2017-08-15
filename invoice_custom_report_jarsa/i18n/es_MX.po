@@ -1,0 +1,280 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* invoice_custom_report_jarsa
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-08-17 19:52+0000\n"
+"PO-Revision-Date: 2017-08-17 19:52+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: invoice_custom_report_jarsa
+#: model:ir.ui.view,arch_db:invoice_custom_report_jarsa.l10n_mx_base_page_jarsa
+msgid ", <br/>\n"
+"                                        <span>PLACE OF EXPEDITION </span>"
+msgstr ", <br/>\n"
+"                                        <span>LUGAR DE EXPEDICIÓN </span>"
+
+#. module: invoice_custom_report_jarsa
+#: model:ir.ui.view,arch_db:invoice_custom_report_jarsa.l10n_mx_base_page_jarsa
+msgid "<b><span>Notes: </span></b>"
+msgstr "<b><span>Notas: </span></b>"
+
+#. module: invoice_custom_report_jarsa
+#: model:ir.ui.view,arch_db:invoice_custom_report_jarsa.l10n_mx_base_header_jarsa
+msgid "<br/>\n"
+"                                <i aria-hidden=\"true\" class=\"fa fa-building\"/>\n"
+"                                <strong>Vat:</strong>\n"
+"                                <br/>"
+msgstr "<br/>\n"
+"                                <i aria-hidden=\"true\" class=\"fa fa-building\"/>\n"
+"                                <strong>RFC:</strong>\n"
+"                                <br/>"
+
+#. module: invoice_custom_report_jarsa
+#: model:ir.ui.view,arch_db:invoice_custom_report_jarsa.l10n_mx_base_header_jarsa
+msgid "<br/>\n"
+"                                <i aria-hidden=\"true\" class=\"fa fa-map-marker\"/>\n"
+"                                <strong>Address:</strong>\n"
+"                                <br/>"
+msgstr "<br/>\n"
+"                                <i aria-hidden=\"true\" class=\"fa fa-map-marker\"/>\n"
+"                                <strong>Dirección:</strong>\n"
+"                                <br/>"
+
+#. module: invoice_custom_report_jarsa
+#: model:ir.ui.view,arch_db:invoice_custom_report_jarsa.l10n_mx_base_header_jarsa
+msgid "<br/>\n"
+"                                <strong><span>Account Number: </span></strong>"
+msgstr "<br/>\n"
+"                                <strong><span>Número de cuenta: </span></strong>"
+
+#. module: invoice_custom_report_jarsa
+#: model:ir.ui.view,arch_db:invoice_custom_report_jarsa.l10n_mx_base_header_jarsa
+msgid "<br/>\n"
+"                                <strong><span>Certificate Number:</span></strong>"
+msgstr "<br/>\n"
+"                                <strong><span>Número certificado:</span></strong>"
+
+#. module: invoice_custom_report_jarsa
+#: model:ir.ui.view,arch_db:invoice_custom_report_jarsa.l10n_mx_base_header_jarsa
+msgid "<br/>\n"
+"                                <strong><span>Fiscal Folio:</span></strong>"
+msgstr "<br/>\n"
+"                                <strong><span>Folio Fiscal:</span></strong>"
+
+#. module: invoice_custom_report_jarsa
+#: model:ir.ui.view,arch_db:invoice_custom_report_jarsa.l10n_mx_base_header_jarsa
+msgid "<br/>\n"
+"                                <strong><span>Issue Date:</span></strong>"
+msgstr "<br/>\n"
+"                                <strong><span>Fecha de emisión:</span></strong>"
+
+#. module: invoice_custom_report_jarsa
+#: model:ir.ui.view,arch_db:invoice_custom_report_jarsa.l10n_mx_base_header_jarsa
+msgid "<br/>\n"
+"                                <strong>Fiscal position:</strong>"
+msgstr "<br/>\n"
+"                                <strong>Posición fiscal :</strong>"
+
+#. module: invoice_custom_report_jarsa
+#: model:ir.ui.view,arch_db:invoice_custom_report_jarsa.l10n_mx_base_header_jarsa
+msgid "<br/>\n"
+"                                <strong>Payment terms:</strong>"
+msgstr "<br/>\n"
+"                                <strong>Términos de pago:</strong>"
+
+#. module: invoice_custom_report_jarsa
+#: model:ir.ui.view,arch_db:invoice_custom_report_jarsa.l10n_mx_base_header_jarsa
+msgid "<span>CREDIT NOTE</span>"
+msgstr "<span>NOTA DE CRÉDITO</span>"
+
+#. module: invoice_custom_report_jarsa
+#: model:ir.ui.view,arch_db:invoice_custom_report_jarsa.l10n_mx_base_page_jarsa
+msgid "<span>Certification date and time:</span>"
+msgstr "<span>Fecha y hora de certificación:</span>"
+
+#. module: invoice_custom_report_jarsa
+#: model:ir.ui.view,arch_db:invoice_custom_report_jarsa.l10n_mx_base_page_jarsa
+msgid "<span>DESCRIPTION</span>"
+msgstr "<span>DESCRIPCIÓN</span>"
+
+#. module: invoice_custom_report_jarsa
+#: model:ir.ui.view,arch_db:invoice_custom_report_jarsa.l10n_mx_base_page_jarsa
+msgid "<span>Emitter:</span>"
+msgstr "<span>Emisor:</span>"
+
+#. module: invoice_custom_report_jarsa
+#: model:ir.ui.view,arch_db:invoice_custom_report_jarsa.l10n_mx_base_page_jarsa
+msgid "<span>Fiscal folio:</span>"
+msgstr "<span>Folio fiscal:</span>"
+
+#. module: invoice_custom_report_jarsa
+#: model:ir.ui.view,arch_db:invoice_custom_report_jarsa.l10n_mx_base_header_jarsa
+msgid "<span>INVOICE</span>"
+msgstr "<span>FACTURA</span>"
+
+#. module: invoice_custom_report_jarsa
+#: model:ir.ui.view,arch_db:invoice_custom_report_jarsa.l10n_mx_base_page_jarsa
+msgid "<span>QUANTITY</span>"
+msgstr "<span>CANTIDAD</span>"
+
+#. module: invoice_custom_report_jarsa
+#: model:ir.ui.view,arch_db:invoice_custom_report_jarsa.l10n_mx_base_header_jarsa
+msgid "<span>SERIE / FOLIO:</span>"
+msgstr "<span>SERIE / FOLIO:</span>"
+
+#. module: invoice_custom_report_jarsa
+#: model:ir.ui.view,arch_db:invoice_custom_report_jarsa.l10n_mx_base_page_jarsa
+msgid "<span>SON </span>"
+msgstr "<span>SON </span>"
+
+#. module: invoice_custom_report_jarsa
+#: model:ir.ui.view,arch_db:invoice_custom_report_jarsa.l10n_mx_base_page_jarsa
+msgid "<span>Serial number of SAT certificate:</span>"
+msgstr "<span>Número de Serie del Certificado del SAT:</span>"
+
+#. module: invoice_custom_report_jarsa
+#: model:ir.ui.view,arch_db:invoice_custom_report_jarsa.l10n_mx_base_page_jarsa
+msgid "<span>Serial number of emitter certificate:</span>"
+msgstr "<span>Número de serie del certificado del emisor:</span>"
+
+#. module: invoice_custom_report_jarsa
+#: model:ir.ui.view,arch_db:invoice_custom_report_jarsa.l10n_mx_base_page_jarsa
+msgid "<span>THE PAYMENT OF THIS INVOICE IS </span>"
+msgstr "<span>EL PAGO DE ESTA FACTURA ES </span>"
+
+#. module: invoice_custom_report_jarsa
+#: model:ir.ui.view,arch_db:invoice_custom_report_jarsa.l10n_mx_base_page_jarsa
+msgid "<span>THIS IS A PRINTED REPRESENTATION OF A CFDI</span>"
+msgstr "<span>ESTE DOCUMENTO ES UNA REPRESENTACIÓN IMPRESA DE UN CFDI</span>"
+
+#. module: invoice_custom_report_jarsa
+#: model:ir.ui.view,arch_db:invoice_custom_report_jarsa.l10n_mx_base_page_jarsa
+msgid "<span>TOTAL</span>"
+msgstr "<span>TOTAL</span>"
+
+#. module: invoice_custom_report_jarsa
+#: model:ir.ui.view,arch_db:invoice_custom_report_jarsa.l10n_mx_base_page_jarsa
+msgid "<span>Total amount with letters</span>"
+msgstr "<span>Monto total en letras</span>"
+
+#. module: invoice_custom_report_jarsa
+#: model:ir.ui.view,arch_db:invoice_custom_report_jarsa.l10n_mx_base_page_jarsa
+msgid "<span>UNIT PRICE</span>"
+msgstr "<span>VALOR UNIT</span>"
+
+#. module: invoice_custom_report_jarsa
+#: model:ir.ui.view,arch_db:invoice_custom_report_jarsa.l10n_mx_base_page_jarsa
+msgid "<span>UoM</span>"
+msgstr "<span>UdM</span>"
+
+#. module: invoice_custom_report_jarsa
+#: model:ir.ui.view,arch_db:invoice_custom_report_jarsa.l10n_mx_base_header_jarsa
+msgid "<span>VAT. </span>"
+msgstr "<span>RFC. </span>"
+
+#. module: invoice_custom_report_jarsa
+#: model:ir.ui.view,arch_db:invoice_custom_report_jarsa.l10n_mx_base_header_jarsa
+msgid "<span>ZIP. </span>"
+msgstr "<span>CP. </span>"
+
+#. module: invoice_custom_report_jarsa
+#: model:ir.ui.view,arch_db:invoice_custom_report_jarsa.l10n_mx_base_page_jarsa
+msgid "<strong><span style=\"padding-right:20px;\">Ret.</span></strong>"
+msgstr "<strong><span style=\"padding-right:20px;\">Ret.</span></strong>"
+
+#. module: invoice_custom_report_jarsa
+#: model:ir.ui.view,arch_db:invoice_custom_report_jarsa.l10n_mx_base_page_jarsa
+msgid "<strong><span>Digital stamp SAT</span></strong>"
+msgstr "<strong><span>Sello digital del SAT</span></strong>"
+
+#. module: invoice_custom_report_jarsa
+#: model:ir.ui.view,arch_db:invoice_custom_report_jarsa.l10n_mx_base_page_jarsa
+msgid "<strong><span>Digital stamp of the emitter</span></strong>"
+msgstr "<strong><span>Sello digital del emisor</span></strong>"
+
+#. module: invoice_custom_report_jarsa
+#: model:ir.ui.view,arch_db:invoice_custom_report_jarsa.l10n_mx_base_page_jarsa
+msgid "<strong><span>Discount: </span></strong>"
+msgstr "<strong><span>Descuento: </span></strong>"
+
+#. module: invoice_custom_report_jarsa
+#: model:ir.ui.view,arch_db:invoice_custom_report_jarsa.l10n_mx_base_header_jarsa
+msgid "<strong><span>Expedition Place:</span></strong>"
+msgstr "<strong><span>Lugar de la expedición:</span></strong>"
+
+#. module: invoice_custom_report_jarsa
+#: model:ir.ui.view,arch_db:invoice_custom_report_jarsa.l10n_mx_base_page_jarsa
+msgid "<strong><span>Original chain complement of digital certification SAT</span></strong>"
+msgstr "<strong><span>Cadena original del complemento de certificación digital del SAT</span></strong>"
+
+#. module: invoice_custom_report_jarsa
+#: model:ir.ui.view,arch_db:invoice_custom_report_jarsa.l10n_mx_base_page_jarsa
+msgid "<strong><span>Payment Method: </span></strong>"
+msgstr "<strong><span>Método de pago: </span></strong>"
+
+#. module: invoice_custom_report_jarsa
+#: model:ir.ui.view,arch_db:invoice_custom_report_jarsa.l10n_mx_base_page_jarsa
+msgid "<strong><span>Sub Total: </span></strong>"
+msgstr "<strong><span>Sub Total: </span></strong>"
+
+#. module: invoice_custom_report_jarsa
+#: model:ir.ui.view,arch_db:invoice_custom_report_jarsa.l10n_mx_base_page_jarsa
+msgid "<strong><span>Total:</span></strong>"
+msgstr "<strong><span>Total:</span></strong>"
+
+#. module: invoice_custom_report_jarsa
+#: model:ir.ui.view,arch_db:invoice_custom_report_jarsa.l10n_mx_base_page_jarsa
+msgid "<strong>Currency:</strong>"
+msgstr "<strong>Moneda:</strong>"
+
+#. module: invoice_custom_report_jarsa
+#: model:ir.ui.view,arch_db:invoice_custom_report_jarsa.l10n_mx_base_page_jarsa
+msgid "<strong>Origin:</strong>"
+msgstr "<strong>Origen:</strong>"
+
+#. module: invoice_custom_report_jarsa
+#: model:ir.ui.view,arch_db:invoice_custom_report_jarsa.l10n_mx_base_page_jarsa
+msgid "<strong>Payment terms:</strong>"
+msgstr "<strong>Términos de pago:</strong>"
+
+#. module: invoice_custom_report_jarsa
+#: model:ir.ui.view,arch_db:invoice_custom_report_jarsa.l10n_mx_base_header_jarsa
+msgid "<strong>Receiver:</strong>\n"
+"                                <br/>"
+msgstr "<strong>Receptor:</strong>\n"
+"                                <br/>"
+
+#. module: invoice_custom_report_jarsa
+#: model:ir.ui.view,arch_db:invoice_custom_report_jarsa.l10n_mx_base_page_jarsa
+msgid "<strong>Reference:</strong>"
+msgstr "<strong>Referencia:</strong>"
+
+#. module: invoice_custom_report_jarsa
+#: model:ir.ui.view,arch_db:invoice_custom_report_jarsa.l10n_mx_base_page_jarsa
+msgid "<strong>Salesman:</strong>"
+msgstr "<strong>Vendedor:</strong>"
+
+#. module: invoice_custom_report_jarsa
+#: model:ir.ui.view,arch_db:invoice_custom_report_jarsa.l10n_mx_base_header_jarsa
+msgid "<strong>WITHOUT FOLIO OR INVALID STATUS</strong>"
+msgstr "<strong>SIN FOLIO O ESTATUS NO VALIDO</strong>"
+
+#. module: invoice_custom_report_jarsa
+#: model:ir.ui.view,arch_db:invoice_custom_report_jarsa.l10n_mx_base_page_jarsa
+msgid "NA"
+msgstr "NA"
+
+#. module: invoice_custom_report_jarsa
+#: model:ir.ui.view,arch_db:invoice_custom_report_jarsa.l10n_mx_base_footer_jarsa
+msgid "Page:"
+msgstr "Página:"
+
