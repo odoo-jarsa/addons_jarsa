@@ -53,9 +53,8 @@ class ResUsers(models.Model):
                 transaction, 'Odoo', self.id)['outBioKey']
             self.biokey = biokey
 
-    @classmethod
-    def _login(cls, db, login, password):
-        user_id = super(ResUsers, cls)._login(db, login, password)
+    def _login(self, db, login, password):
+        user_id = super(ResUsers, self)._login(db, login, password)
         if user_id == SUPERUSER_ID:
             return user_id
         with registry(db).cursor() as cr:
