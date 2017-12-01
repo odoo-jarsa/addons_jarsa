@@ -4,6 +4,7 @@
 from zeep import Client
 from openerp import _, api, fields, models, registry, SUPERUSER_ID
 from openerp.exceptions import ValidationError
+from openerp.http import request
 
 
 class ResUsers(models.Model):
@@ -55,36 +56,40 @@ class ResUsers(models.Model):
 
     def _login(self, db, login, password):
         user_id = super(ResUsers, self)._login(db, login, password)
+        if not user_id:
+            return user_id
         if user_id == SUPERUSER_ID:
             return user_id
         with registry(db).cursor() as cr:
-            cr.execute("SELECT biokey FROM res_users WHERE id = %s", (
+            cr.execute("SELECT biokey FROM res_users WHERE id = %s" % (
                 user_id,))
-            user = cr.fetchone()
-        client = Client(
-            'http://0d0b113c.ngrok.io/BioEngineClientWS'
-            '/BioEngineClient.asmx?WSDL')
-        token = client.service.GetToken()['outToken']
-        transaction = client.service.GetTmpTransNum(token)['outTmpTransNum']
-        client.service.CaptureFinger(
-            inToken=token,
-            inTmpTransNum=transaction,
-            inFlat=True,
-            inRoll=False,
-            inThumbR=False,
-            inIndexR=True,
-            inMiddleR=False,
-            inRingR=False,
-            inLittleR=False,
-            inThumbL=False,
-            inIndexL=False,
-            inMiddleL=False,
-            inRingL=False,
-            inLittleL=False,
-        )
-        client.service.SendToServer(token, transaction)
-        biokey = client.service.ServerFind(
-            transaction, user)['outBioKey']
-        if not biokey:
-            user_id = False
+            user_biokey = cr.fetchone()
+        if not request.session.login:
+            client = Client(
+                'http://0d0b113c.ngrok.io/BioEngineClientWS'
+                '/BioEngineClient.asmx?WSDL')
+            token = client.service.GetToken()['outToken']
+            transaction = client.service.GetTmpTransNum(
+                token)['outTmpTransNum']
+            client.service.CaptureFinger(
+                inToken=token,
+                inTmpTransNum=transaction,
+                inFlat=True,
+                inRoll=False,
+                inThumbR=False,
+                inIndexR=True,
+                inMiddleR=False,
+                inRingR=False,
+                inLittleR=False,
+                inThumbL=False,
+                inIndexL=False,
+                inMiddleL=False,
+                inRingL=False,
+                inLittleL=False,
+            )
+            client.service.SendToServer(token, transaction)
+            biokey = client.service.ServerFind(
+                transaction, user_biokey[0])['outBioKey']
+            if not biokey:
+                user_id = False
         return user_id
