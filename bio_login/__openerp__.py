@@ -11,6 +11,7 @@
     'description': 'Bio Login',
     'depends': [],
     'data': [
+        'data/config_parameter_data.xml',
         'views/res_user_view.xml',
     ],
     'installable': True,

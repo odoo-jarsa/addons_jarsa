@@ -64,32 +64,33 @@ class ResUsers(models.Model):
             cr.execute("SELECT biokey FROM res_users WHERE id = %s" % (
                 user_id,))
             user_biokey = cr.fetchone()
-        if not request.session.login:
-            client = Client(
-                'http://0d0b113c.ngrok.io/BioEngineClientWS'
-                '/BioEngineClient.asmx?WSDL')
-            token = client.service.GetToken()['outToken']
-            transaction = client.service.GetTmpTransNum(
-                token)['outTmpTransNum']
-            client.service.CaptureFinger(
-                inToken=token,
-                inTmpTransNum=transaction,
-                inFlat=True,
-                inRoll=False,
-                inThumbR=False,
-                inIndexR=True,
-                inMiddleR=False,
-                inRingR=False,
-                inLittleR=False,
-                inThumbL=False,
-                inIndexL=False,
-                inMiddleL=False,
-                inRingL=False,
-                inLittleL=False,
-            )
-            client.service.SendToServer(token, transaction)
-            biokey = client.service.ServerFind(
-                transaction, user_biokey[0])['outBioKey']
-            if not biokey:
-                user_id = False
+        if request.session.login:
+            return user_id
+        ngrok_url = self.pool.get('ir.config_parameter').get_param(
+            'ngrok_url_parameter')
+        client = Client(ngrok_url)
+        token = client.service.GetToken()['outToken']
+        transaction = client.service.GetTmpTransNum(
+            token)['outTmpTransNum']
+        client.service.CaptureFinger(
+            inToken=token,
+            inTmpTransNum=transaction,
+            inFlat=True,
+            inRoll=False,
+            inThumbR=False,
+            inIndexR=True,
+            inMiddleR=False,
+            inRingR=False,
+            inLittleR=False,
+            inThumbL=False,
+            inIndexL=False,
+            inMiddleL=False,
+            inRingL=False,
+            inLittleL=False,
+        )
+        client.service.SendToServer(token, transaction)
+        biokey = client.service.ServerFind(
+            transaction, user_biokey[0])['outBioKey']
+        if not biokey:
+            user_id = False
         return user_id
