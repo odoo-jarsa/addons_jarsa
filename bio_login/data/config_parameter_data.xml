@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo>
-	<data noupdate="1">
-		<record id="ngrok_url_parameter" model="ir.config_parameter">
-			<field name="key">ngrok_url</field>
-			<field name="value">http://0d0b113c.ngrok.io/BioEngineClientWS/BioEngineClient.asmx?WSDL</field>
-		</record>
-	</data>
+<odoo noupdate="1">
+	<record id="ngrok_url_parameter" model="ir.config_parameter">
+		<field name="key">ngrok_url</field>
+		<field name="value">http://0d0b113c.ngrok.io/BioEngineClientWS/BioEngineClient.asmx?WSDL</field>
+	</record>
 </odoo>

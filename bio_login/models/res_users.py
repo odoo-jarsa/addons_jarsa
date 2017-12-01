@@ -17,9 +17,9 @@ class ResUsers(models.Model):
     @api.multi
     def fingerprint(self):
         self.ensure_one()
-        client = Client(
-            'http://0d0b113c.ngrok.io/BioEngineClientWS'
-            '/BioEngineClient.asmx?WSDL')
+        ngrok_url = self.pool.get('ir.config_parameter').get_param(
+            'ngrok_url_parameter')
+        client = Client(ngrok_url)
         token = client.service.GetToken()['outToken']
         transaction = client.service.GetTmpTransNum(token)['outTmpTransNum']
         client.service.CaptureFinger(
