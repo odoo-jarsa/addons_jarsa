@@ -14,9 +14,7 @@ class ResUsers(models.Model):
         string='Biokey',
     )
 
-    @api.multi
-    def fingerprint(self):
-        self.ensure_one()
+    def enrollment(self, biokey):
         ngrok_url = self.pool.get('ir.config_parameter').get_param(
             'ngrok_url_parameter')
         client = Client(ngrok_url)
@@ -39,7 +37,13 @@ class ResUsers(models.Model):
             inLittleL=False,
         )
         client.service.SendToServer(token, transaction)
-        biokey = client.service.ServerFind(transaction, '')['outBioKey']
+        biokey = client.service.ServerFind(transaction, biokey)['outBioKey']
+        return client, token, transaction, biokey
+
+    @api.multi
+    def fingerprint(self):
+        self.ensure_one()
+        client, token, transaction, biokey = self.enrollment(biokey='')
         if biokey:
             appkey = client.service.GetAppKey(biokey, 'Odoo')['outAppKey']
             if appkey:
@@ -66,31 +70,8 @@ class ResUsers(models.Model):
             user_biokey = cr.fetchone()
         if request.session.login:
             return user_id
-        ngrok_url = self.pool.get('ir.config_parameter').get_param(
-            'ngrok_url_parameter')
-        client = Client(ngrok_url)
-        token = client.service.GetToken()['outToken']
-        transaction = client.service.GetTmpTransNum(
-            token)['outTmpTransNum']
-        client.service.CaptureFinger(
-            inToken=token,
-            inTmpTransNum=transaction,
-            inFlat=True,
-            inRoll=False,
-            inThumbR=False,
-            inIndexR=True,
-            inMiddleR=False,
-            inRingR=False,
-            inLittleR=False,
-            inThumbL=False,
-            inIndexL=False,
-            inMiddleL=False,
-            inRingL=False,
-            inLittleL=False,
-        )
-        client.service.SendToServer(token, transaction)
-        biokey = client.service.ServerFind(
-            transaction, user_biokey[0])['outBioKey']
+        client, token, transaction, biokey = self.enrollment(
+            biokey=user_biokey[0])
         if not biokey:
             user_id = False
         return user_id
