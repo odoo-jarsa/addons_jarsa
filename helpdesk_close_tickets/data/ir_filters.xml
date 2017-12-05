@@ -3,7 +3,15 @@
     <record id="filter_close" model="ir.filters">
         <field name="name">Stage for no close</field>
         <field name="model_id">helpdesk.ticket</field>
-        <field name="domain">[('stage_id', 'in', [9])]</field>
+        <field name="domain">[('stage_id', 'in', [3])]</field>
+        <field eval="False" name="user_id"/>
+        <field name="is_default" eval="True"/>
+        <field name="context">{}</field>
+    </record>
+    <record id="filter_tickets_touch" model="ir.filters">
+        <field name="name">Stage close</field>
+        <field name="model_id">helpdesk.ticket</field>
+        <field name="domain">[('stage_id', '=', 9)]</field>
         <field eval="False" name="user_id"/>
         <field name="is_default" eval="True"/>
         <field name="context">{}</field>

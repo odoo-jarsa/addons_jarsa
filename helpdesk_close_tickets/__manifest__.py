@@ -15,6 +15,7 @@
         'helpdesk',
     ],
     "data": [
+        'data/template.xml',
         'data/ir_cron.xml',
         'data/ir_action_server.xml',
         'data/config_parameter_data.xml',

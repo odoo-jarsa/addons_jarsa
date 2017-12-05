@@ -7,17 +7,13 @@
 		<field name="type">ir.actions.server</field>
 		<field name="state">email</field>
 		<field name="sequence">99</field>
-	</record>
-	<record id="action_close_ticket" model="ir.actions.server">
-		<field name="name">Close Ticket</field>
-		<field name="model_id" ref="helpdesk_close_tickets.model_helpdesk_ticket"/>
-		<field name="condition">True</field>
-		<field name="type">ir.actions.server</field>
-		<field name="state">code</field>
-		<field name="code">
-			stage_solved = env['helpdesk.stage'].search([('is_close', '=', True)], order='sequence', limit=1).id
-			for record in records:
-				record.stage_id = stage_solved
-		</field>
+		<field name="email_from">${object.rating_get_rated_partner_id().email_formatted | safe}</field>
+		<field name="email_to">${('' if object.partner_id and object.partner_id.email and object.partner_id.email==object.partner_email else object.partner_email|safe)}</field>
+		<field name="partner_to">${object.partner_id and object.partner_id.email and object.partner_id.email==object.partner_email and object.partner_id.id or False}</field>
+		<field name="template_id" ref="email_template_close_tickets"/>
+		<field name="subject">${object.display_name}</field>
+		<field name="body_html"><![CDATA[Hola ${object.partner_id.name or ''},
+
+Hemos considerado cerrado su Ticket con referencia ${object.display_name} debido a la falta de respuesta por su parte.]]></field>
 	</record>
 </odoo>

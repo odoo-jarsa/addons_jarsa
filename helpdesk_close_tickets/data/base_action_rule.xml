@@ -2,12 +2,12 @@
 <odoo noupdate="1">
 	<record id="close_ticket_for_time" model="base.action.rule">
 		<field name="name">Close ticket for time</field>
-		<field name="kind">on_time</field>
+		<field name="kind">on_write</field>
 		<field name="model_id" ref="helpdesk_close_tickets.model_helpdesk_ticket"/>
+		<field name="filter_pre_id" ref="helpdesk_close_tickets.filter_tickets_touch"></field>
+		<field name="filter_pre_domain">[('stage_id', '=', 9)]</field>
 		<field name="filter_id" ref="helpdesk_close_tickets.filter_close"></field>
-		<field name="trg_date_range">5</field>
-		<field name="trg_date_range_type">day</field>
-		<field name="trg_date_resource_field_id" ref="helpdesk.field_helpdesk_ticket_write_uid"/>
-		<field name="server_action_ids" eval="[(6, 0, [ref('helpdesk_close_tickets.action_email_close_ticket'), ref('helpdesk_close_tickets.action_close_ticket')])]"/>
+		<field name="filter_domain">[('stage_id', 'in', [3])]</field>
+		<field name="server_action_ids" eval="[(6, 0, [ref('helpdesk_close_tickets.action_email_close_ticket')])]"/>
 	</record>
 </odoo>
