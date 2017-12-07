@@ -1,0 +1,27 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* crm_new_lead
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-12-07 19:59+0000\n"
+"PO-Revision-Date: 2017-12-07 19:59+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: crm_new_lead
+#: model:ir.ui.view,arch_db:crm_new_lead.view_helpdesk_crm_form
+msgid "Create Lead"
+msgstr "Crear Iniciativa"
+
+#. module: crm_new_lead
+#: model:ir.model,name:crm_new_lead.model_helpdesk_ticket
+msgid "Ticket"
+msgstr "Tiquet"
+
