@@ -52,5 +52,6 @@ class WizardMerge(models.TransientModel):
                     'record_name': main.name,
                 })
                 line.message_follower_ids.write({'res_id': main.id})
+
                 if line.id != main.id:
                     line.unlink()
