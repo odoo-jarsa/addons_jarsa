@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<odoo>
+	<record id="action_email_close_ticket" model="ir.actions.server">
+		<field name="name">Close Ticket</field>
+		<field name="model_id" ref="helpdesk_close_tickets.model_helpdesk_ticket"/>
+		<field name="condition">True</field>
+		<field name="type">ir.actions.server</field>
+		<field name="state">email</field>
+		<field name="sequence">99</field>
+		<field name="email_from">${object.rating_get_rated_partner_id().email_formatted | safe}</field>
+		<field name="email_to">${('' if object.partner_id and object.partner_id.email and object.partner_id.email==object.partner_email else object.partner_email|safe)}</field>
+		<field name="partner_to">${object.partner_id and object.partner_id.email and object.partner_id.email==object.partner_email and object.partner_id.id or False}</field>
+		<field name="template_id" ref="email_template_close_tickets"/>
+		<field name="subject">${object.display_name}</field>
+		<field name="body_html"><![CDATA[
+<div style="padding:0px;width:600px;margin:auto;background: #FFFFFF repeat top /100%;color:#777777">
+    <table cellspacing="0" cellpadding="0" style="width:600px;border-collapse:collapse;background:inherit;color:inherit">
+        <tbody><tr>
+            <td valign="center" width="200" style="padding:10px 10px 10px 5px;font-size: 12px">
+                <img src="/logo.png" style="padding: 0px; margin: 0px; height: auto; width: 80px;" alt="${user.company_id.name}">
+            </td>
+        </tr></tbody>
+    </table>
+</div>
+<div style="padding:0px;width:600px;margin:auto;background: #FFFFFF repeat top /100%;color:#777777">
+    <p>Dear ${object.partner_id.name or 'Madam, Sir'},</p>
+    <p>This automatic message informs you that we have determined your ticket (reference ${object.id}) because you have not received an answer on your part.</p>
+    <p>We hope that the services provided have fulfilled their expectations. If you have more questions or comments, please do not hesitate to reply to this email to re-open your ticket. Thank you for your cooperation.</p>
+    <p>Kind regards, ${object.team_id.name or 'Helpdesk'} Team.</p>
+</div>
+<div style="padding:0px;width:600px;margin:auto; margin-top: 10px; background: #fff repeat top /100%;color:#777777">
+    ${user.signature | safe}
+    <p style="font-size: 11px; margin-top: 10px;">
+        <strong>Sent by ${user.company_id.name} using <a href="www.odoo.com" style="text-decoration:none; color: #875A7B;">Odoo</a></strong>
+    </p>
+</div>
+		]]></field>
+	</record>
+</odoo>

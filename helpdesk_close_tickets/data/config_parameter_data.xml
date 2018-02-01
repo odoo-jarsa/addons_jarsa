@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate='1'>
+	<record id="helpdesk_auto_close_parameter" model="ir.config_parameter">
+        <field name="key">helpdesk_auto_close</field>
+        <field name="value">5/9</field>
+    </record>
+</odoo>

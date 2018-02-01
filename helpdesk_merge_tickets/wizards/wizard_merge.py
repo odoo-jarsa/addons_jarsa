@@ -43,23 +43,15 @@ class WizardMerge(models.TransientModel):
                 attachments = self.env['ir.attachment'].search([
                     ('res_model', '=', 'helpdesk.ticket'),
                     ('res_id', '=', line.id)])
-                followers = self.env['mail.followers'].search([
-                    ('res_model', '=', 'helpdesk.ticket'),
-                    ('res_id', '=', line.id)])
+                attachments.write({
+                    'res_id': main.id,
+                    'res_name': main.name,
+                })
+                line.message_ids.write({
+                    'res_id': main.id,
+                    'record_name': main.name,
+                })
+                line.message_follower_ids.write({'res_id': main.id})
 
-                for follower in followers:
-                    if (follower.partner_id not in
-                            main.message_follower_ids.mapped('partner_id')):
-                        follower.write({'res_id': main.id})
-                for attachment in attachments:
-                    attachment.write({
-                        'res_id': main.id,
-                        'res_name': main.name,
-                    })
-                for msg in line.message_ids:
-                    msg.write({
-                        'res_id': main.id,
-                        'record_name': main.name,
-                    })
                 if line.id != main.id:
                     line.unlink()
