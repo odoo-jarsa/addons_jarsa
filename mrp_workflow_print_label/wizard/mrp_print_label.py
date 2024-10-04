@@ -22,25 +22,25 @@ class MrpPrintLabel(models.TransientModel):
     def print_report(self):
         self.order_id.state = "print_label"
         message = _("Printed by: %s") % self.order_id.user_id.name
-        if self.order_id.bom_id.cloth_type == 'cloth':
-            image = self.env['report'].barcode(
-                'Code128', self.print_lot,
-                width=300, height=50, humanreadable=1)
-            image_b64 = base64.encodestring(image)
-        else:
+        production_barcode = self.env['report'].barcode(
+            'QR', self._prepare_qr_code(),
+            width=300, height=300)
+        production_barcode_b64 = base64.encodestring(production_barcode)
+        print_lot_barcode = self.env['report'].barcode(
+            'Code128', self.print_lot,
+            width=300, height=50, humanreadable=1)
+        print_lot_barcode_b64 = base64.encodestring(print_lot_barcode)
+        if self.order_id.bom_id.cloth_type != 'cloth':
             message = message + _(
                 '<br/>Container Quantity: %s') % self.container_qty
-            image = self.env['report'].barcode(
-                'Code128', self.print_lot,
-                width=300, height=50, humanreadable=1)
-            image_b64 = base64.encodestring(image)
         self.order_id.write({
             'components_number': self.components_number,
             'components_pieces': self.components_pieces,
             'total_pieces': self.components_pieces * self.components_number,
             'container_qty': self.container_qty,
             'print_lot': self.print_lot,
-            'print_lot_barcode': image_b64,
+            'print_lot_barcode': print_lot_barcode_b64,
+            'production_barcode': production_barcode_b64,
             })
         self.order_id.message_post(
             body=message)
@@ -64,6 +64,15 @@ class MrpPrintLabel(models.TransientModel):
                 'context': context,
                 'docs': self.order_id.id
             }
+
+    @api.multi
+    def _prepare_qr_code(self):
+        qr_code = "1J{supplier_number}Q{quantity}P{part_number}V{supplier_number}1T{lot}21L".format(
+            supplier_number=self.order_id.company_id.supplier_number.ljust(18, '0'),
+            quantity=self.components_pieces * self.components_number,
+            part_number=self.order_id.product_id.default_code or "",
+            lot=self.print_lot)
+        return qr_code
 
     @api.model
     def default_get(self, fields):
